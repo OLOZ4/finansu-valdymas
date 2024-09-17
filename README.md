@@ -1,0 +1,1 @@
+Sveiki, tai yra test failas.
