@@ -10,6 +10,7 @@ services:
             - php-fpm
 
     php-fpm:
-        build: php-fpm
+        image: php:8.3.11-fpm
+        #build: php-fpm
         volumes:
             - ./pagrindinis:/var/www/html
