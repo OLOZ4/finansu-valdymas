@@ -2,7 +2,7 @@ services:
     web:
         image: nginx:latest
         ports:
-            - "8080:80"
+            - "80:80"
         volumes:
             - ./pagrindinis:/var/www/html
             - ./default.conf:/etc/nginx/conf.d/default.conf
