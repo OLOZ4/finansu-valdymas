@@ -1,0 +1,112 @@
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top right, #0f2027, #203a43, #2c5364);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-box {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 350px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+
+.input-group {
+    margin-bottom: 15px; 
+    text-align: left;
+}
+
+.input-group label {
+    color: white;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.input-group input {
+    width: 95%; 
+    padding: 10px;
+    font-size: 14px; 
+    border: none;
+    border-radius: 5px; 
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group input:focus {
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.5);
+}
+
+
+.button {
+    padding: 12px 0;
+    margin-top: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    width: 100%;
+    transition: all 0.3s ease;
+    background-image: linear-gradient(to right, #007BFF, #00c6ff);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
+}
+
+.button:hover {
+    background-image: linear-gradient(to right, #0056b3, #0099ff);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.7);
+}
+
+
+.forgot-password {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.forgot-password a {
+    color: #00c6ff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #007BFF;
+}
+
+.submit-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-group .button, .submit-group .forgot-password {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit-group .forgot-password {
+    margin-top: 5px;
+}
