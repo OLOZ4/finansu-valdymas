@@ -5,16 +5,16 @@ USE db;
 -- Create the tables
 CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255),
+  username VARCHAR(255),
   email VARCHAR(255),
   password VARCHAR(255),
-  UNIQUE (name, email)
+  UNIQUE (username, email)
 );
 
 -- Insert some initial data
-INSERT INTO users (name, email, password) VALUES 
-('Testas', 'johndoe@example.com', 'pass123')
+INSERT INTO users (username, email, password) VALUES 
+('testas', 'johndoe@example.com', 'testas')
 ON DUPLICATE KEY UPDATE
-    name = VALUES(name),
+    username = VALUES(username),
     email = VALUES(email),
     password = VALUES(password);

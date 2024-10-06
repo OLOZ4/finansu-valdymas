@@ -1,3 +1,27 @@
+<?php
+  // Include the config file
+  require_once('config.php');
+
+  // Handle the login form submission
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Check if the username and password are correct
+    $query = "SELECT * FROM users WHERE username='$user' AND password='$password'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+      // Login successful, redirect to the dashboard
+      header('Location: dashboard.php');
+      exit;
+    } else {
+      // Login failed, display an error message
+      echo 'Invalid username or password';
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +34,7 @@
     <div class="overlay">
         <div class="login-box">
             <h2>Login</h2>
-            <form id="loginForm" action="home.html" method="GET">
+            <form id="loginForm" action="login.php" method="post">
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
@@ -28,3 +52,4 @@
     </div>
 </body>
 </html>
+
