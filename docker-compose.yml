@@ -1,5 +1,5 @@
 services:
-    web:
+    web: # nginx web serveris
         image: nginx:latest
         ports:
             - "80:80"
@@ -13,17 +13,27 @@ services:
             - php-fpm
             - mysql
 
-    php-fpm:
-        build: php-fpm
+    php-fpm: # php priedas nginx'ui
+        build: docker/php-fpm
         volumes:
             - ./pagrindinis:/var/www/html
 
-    mysql:
+    mysql: # duomabze
         image: mysql:latest
+        command: --init-file /data/application/init.sql
         env_file:
             - mysql.env
         volumes:
-            - ./mysql:/var/lib/mysql
-            - ./mysql-logs:/var/log/mysql
+            #- ./mysql:/var/lib/mysql
+            - ./mysql-log:/var/log/mysql
+            - ./docker/mysql/init.sql:/data/application/init.sql    
         depends_on:
             - php-fpm
+
+    adminer: # duombazes narsymo irankis
+        image: adminer:latest
+        ports:
+            - "8080:8080"
+        links:
+            - mysql
+        
