@@ -17,3 +17,5 @@ NAUDOJIMO INSTRUKCIJOS
 5. Naršyklėje nueiti į "localhost:80"  ir čia turėtų matytis svetainė
 
     *rekomenduoju programavimui naudoti Visual Studio Code (https://code.visualstudio.com/download) su "Docker" extention'u. Tai padarius konteinerį startuoti ir sustabdyti galima nuėjus ant "docker-compose.yml" ir paspaudus dešinį pelės klavišą ir pasirinkus "Compose Up". Taip pat galima sustabdyti konteinerį pasirinkus "Compose Down"
+
+    !!!! Jei kažkas neveikia, rekomenduotina pabandyti "docker system prune -a" komandą, kuri pravalo docker'io failus. Poto galima kartoti 4-tą žingsnį. !!!!
