@@ -11,27 +11,21 @@
     $query = "SELECT * FROM users WHERE username='$user' AND password='$password'";
     $result = $conn->query($query);
 
-    if ($result->num_rows > 0) {
+    $query1 = "SELECT * FROM users WHERE email='$user' AND password='$password'";
+    $result1 = $conn->query($query1);
+    if ($result->num_rows > 0 OR $result1->num_rows > 0) 
+    {
       // Login successful, redirect to the dashboard
       header('Location: dashboard.php');
       exit;
     }
-    else {
-      $query = "SELECT * FROM users WHERE email='$user' AND password='$password'";
-      $result = $conn->query($query);
-      if ($result->num_rows > 0) {
-        // Login successful, redirect to the dashboard
-        header('Location: dashboard.php');
-        exit;
-      }
-      else
-      {
+    else
+    {
       // Login failed, display an error message
       echo 'Invalid username or password'; 
-      }
-
     }
-  }
+
+}
 ?>
 
 <!DOCTYPE html>
