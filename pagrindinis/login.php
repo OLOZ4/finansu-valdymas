@@ -15,9 +15,21 @@
       // Login successful, redirect to the dashboard
       header('Location: dashboard.php');
       exit;
-    } else {
+    }
+    else {
+      $query = "SELECT * FROM users WHERE email='$user' AND password='$password'";
+      $result = $conn->query($query);
+      if ($result->num_rows > 0) {
+        // Login successful, redirect to the dashboard
+        header('Location: dashboard.php');
+        exit;
+      }
+      else
+      {
       // Login failed, display an error message
-      echo 'Invalid username or password';
+      echo 'Invalid username or password'; 
+      }
+
     }
   }
 ?>
@@ -36,7 +48,7 @@
             <h2>Login</h2>
             <form id="loginForm" action="login.php" method="post">
                 <div class="input-group">
-                    <label for="username">Username</label>
+                    <label for="username">Username or email</label>
                     <input type="text" id="username" name="username" required>
                 </div>
                 <div class="input-group">

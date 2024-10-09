@@ -10,8 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     {
         $query = "INSERT INTO users (username,email,password) VALUES ('$username', '$email', '$password')";
         $conn->query($query);
+        exit;
     }
-
+    else
+    {
+        echo '<h1>Username already exists</h1>';
+    }
 
     }
 ?>
