@@ -1,3 +1,21 @@
+<?php
+require_once("config.php");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+    $query = "SELECT * FROM users WHERE username='$username'";
+    $result = $conn->query($query);
+    if($result->num_rows == 0)
+    {
+        $query = "INSERT INTO users (username,email,password) VALUES ('$username', '$email', '$password')";
+        $conn->query($query);
+    }
+
+
+    }
+?>
+
 <!DOCTYPE html>
 <head>
     <title>Sign Up</title>
@@ -9,11 +27,11 @@
         <div class="signup-box">
             <h1>Sign Up</h1>
 
-            <form id="signup-form" action="home.html" method="GET">
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 
                 <div class="input-group"></div>
                     <label for="username">Username</label>
-                    <input type="text" id="username" required placeholder="Enter your usernane">
+                    <input type="text" id="username" name="username" required placeholder="Enter your usernane">
                </div>
         
                 <div class="input-group">
