@@ -1,7 +1,7 @@
 <?php
 require_once("config.php");
-$pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm-password'];
@@ -9,31 +9,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if($password == $confirm_password)
-    {
-        $query = "SELECT * FROM users WHERE username='$username'";
-        $result = $conn->query($query);
-        if($result->num_rows == 0)
         {
-            $query = "INSERT INTO users (username,email,password) VALUES ('$username', '$email', '$password')";
-            $conn->query($query);
-            exit;
+            $password_hash = password_hash($password,PASSWORD_BCRYPT);
+            $query = "SELECT * FROM users WHERE username='$username'";
+            $result = $conn->query($query);
+
+            $query1 = "SELECT * FROM users WHERE email='$email'";
+            $result1 = $conn->query($query1);
+
+            if($result->num_rows == 0 AND $result1->num_rows == 0)
+                {
+                    $query = "INSERT INTO users (username,email,password) VALUES ('$username', '$email', '$password_hash')";
+                    $result = $conn->query($query);
+                    
+                    if ($result)
+                    {
+                        echo 'susikurti paskyra pavyko!';
+                    }
+                    else 
+                    {
+                        echo 'Klaida: ' . $conn->error_get_last;
+                    }
+                }
+            else
+                {
+                    echo '<h1>Username or E-mail already exists</h1><br><br>';
+                    //echo 'Klaida: ' . $conn->error_get_last;
+
+                }
         }
-        else
-        {
-            echo '<h1>Username already exists</h1>';
-        }
-    }
     else
-    {
-        echo '<h1>Passwords do not match!</h1>';
-    }
-    if ($pageWasRefreshed)
-    {
-        echo 'puslapis atnaujintas!';
-        exit;
-    }
-}
-    
+        {
+            echo '<h1>Passwords do not match!</h1>';
+        }
+}   
 ?>
 
 <!DOCTYPE html>

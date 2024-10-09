@@ -5,19 +5,31 @@
   // Handle the login form submission
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $_POST['username'];
+    $symbol = "@";
     $password = $_POST['password'];
+    
+    if (strpos($user,$symbol) == true) $kintamasis = 'email';
+    else $kintamasis = 'username';
 
     // Check if the username and password are correct
-    $query = "SELECT * FROM users WHERE username='$user' AND password='$password'";
+    $query = "SELECT * FROM users WHERE $kintamasis='$user'";
     $result = $conn->query($query);
 
-    $query1 = "SELECT * FROM users WHERE email='$user' AND password='$password'";
-    $result1 = $conn->query($query1);
-    if ($result->num_rows > 0 OR $result1->num_rows > 0) 
-    {
-      // Login successful, redirect to the dashboard
-      header('Location: dashboard.php');
-      exit;
+    if ($result->num_rows > 0) 
+   { 
+      $query = $conn->query("SELECT password FROM users WHERE $kintamasis='$user'");
+      if ($query)
+      {
+        while ($row = $result->fetch_assoc()) {
+          $hashed_password = $row['password'];          
+        }
+      }
+      if (password_verify($password,$hashed_password)) 
+      {
+        header('Location: dashboard.php');
+
+      }
+      else echo 'blogas slaptazodis, geras '. $kintamasis;
     }
     else
     {

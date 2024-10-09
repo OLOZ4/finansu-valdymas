@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Insert some initial data
 INSERT INTO users (username, email, password) VALUES 
-('testas', 'johndoe@example.com', 'testas')
+('testas', 'johndoe@example.com', 'testas'), ('test', 'test@test','$2y$10$CDNvcCIAHw0d1OxgRt/2luDIhktH54CXMgwb5dhSuUpoE1rClv8Yu')
 ON DUPLICATE KEY UPDATE
     username = VALUES(username),
     email = VALUES(email),
