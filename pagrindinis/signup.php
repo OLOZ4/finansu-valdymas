@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <head>
     <title>Sign Up</title>
-   <!-- <link rel="stylesheet" href="signupde.css"> -->
+        <link rel="stylesheet" href="signupde.css">
 </head>
 <body>
 
