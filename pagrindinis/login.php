@@ -3,40 +3,32 @@
   require_once('config.php');
 
   // Handle the login form submission
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user = $_POST['username'];
-    $symbol = "@";
-    $password = $_POST['password'];
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Patikrina ar html kode yra method=POST 
+    $user = $_POST['username']; // Prilygina user kinamajam vartotojo ivesta username arba email formoje
+    $symbol = "@"; // Naudojamas atskirti ar vartotojas ivede username ar email
+    $password = $_POST['password']; // Prilygina password kinamajam vartotojo ivesta password formoje
     
-    if (strpos($user,$symbol) == true) $kintamasis = 'email';
-    else $kintamasis = 'username';
 
-    // Check if the username and password are correct
-    $query = "SELECT * FROM users WHERE $kintamasis='$user'";
-    $result = $conn->query($query);
+    // Patikrina ar vartotojas ivede savo username ar email, tai yra svarbu, nes kreipiantis i duombaze reikia zinoti ar ivesta vartotojo reiksme reikia tikrinti su email ar su username
+    if (strpos($user,$symbol) == true) $kintamasis = 'email'; // Issiaiskina ar vartotojas ivede username ar email patirindamas ar kintamajame yra "@" zenkliukas, jei taip, kintamaji "kintamasis" prilygina reiksmei "email"
+    else $kintamasis = 'username'; // Jei nera "@" kintamasis "kintamasis" yra prilyginamas username
 
-    if ($result->num_rows > 0) 
-   { 
-      $query = $conn->query("SELECT password FROM users WHERE $kintamasis='$user'");
-      if ($query)
-      {
-        while ($row = $result->fetch_assoc()) {
-          $hashed_password = $row['password'];          
-        }
+    // Patikrina ar egzistuoja toks username ar email  
+    $result = $conn->query("SELECT * FROM users WHERE $kintamasis='$user'"); // Suformuojama uzklausa i db ir kintamajam "result" prilyginamas uzklausos atsakymas 
+
+    if ($result->num_rows > 0) // Jeigu nors yra rastas nors vienas atitikmuo tada:
+    { 
+      while ($row = $result->fetch_assoc()) { // Kintamajam "row" prilygina eilutes masyva, kurios username ar email buvo ivestas (mysqli_fetch_assoc — Fetch the next row of a result set as an associative array)
+        $hashed_password = $row['password']; // Is tos eilutes gautos paimamas slaptazodis, db saugomas stulpelyje 'password' ir prilyginamas kintamajam "hashed password"         
       }
-      if (password_verify($password,$hashed_password)) 
+      if (password_verify($password,$hashed_password)) // Patikrinama ar vartotojo suvestas slaptazodis ir hash'as saugomas db sutampa
       {
-        header('Location: dashboard.php');
+        header('Location: dashboard.php'); // Jei sutampa, tai perforwardina zmogu i puslapi dashboard.php 
 
       }
-      else echo 'blogas slaptazodis, geras '. $kintamasis;
+      else echo 'Invalid username or password'; // Jei slaptazodis su hashu nesutampa, tada ismetamas error'as
     }
-    else
-    {
-      // Login failed, display an error message
-      echo 'Invalid username or password'; 
-    }
-
+    else echo 'Invalid username or password'; // Jei nerastas db vartotojo ivestas username ar email
 }
 ?>
 
