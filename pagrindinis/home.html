@@ -1,11 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Finance Tracker - Home</title>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGRINDINIS</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
 </head>
 <body>
-    <h1>
-        LABAS
-    </h1>
+    
+    <div class="overlay">
+        <!-- virsutinis baras -->
+        <div class="top-bar">
+            <div class="button-container">
+                <button>Analytics</button>
+                <button>About</button>
+            </div>
+            <div class="button-container">
+                <button class="btn"><i class="fa fa-cog"></i></button>
+                <button class="btn"><i class="fa fa-bell"></i></button>
+            </div>
+        </div>
+
+        <!-- pagrindas -->
+        <div class="container">
+            <!-- pasisveikinimas -->
+            <div class="greeting">
+                <h1>Hello, Student!</h1>
+            </div>
+
+            <!-- 3 dezes -->
+            <div class="header">
+                <div class="box balance">
+                    <h2>Balance</h2>
+                    <p id="balanceValue">$0</p>
+                </div>
+                <div class="box income">
+                    <h2>Incomes</h2>
+                    <p id="incomeValue">$0</p>
+                </div>
+                <div class="box expenses">
+                    <h2>Expenses</h2>
+                    <p id="expenseValue">$0</p>
+                    <button class="period-btn" id="selectPeriod">Select Period</button>
+                </div>
+            </div>
+
+            <!-- 3 pagr. mygtukai -->
+            <div class="actions buttons-between">
+                <button class="action-btn" id="addIncomeBtn"><i class="fa fa-plus-circle"></i> Add Income</button>
+                <button class="action-btn" id="addExpenseBtn"><i class="fa fa-minus-circle"></i> Add Expense</button>
+                <button class="action-btn"><i class="fa fa-exchange-alt"></i> Transfer Money</button>
+            </div>
+
+            <!-- pagrindines sekcijos, kur grafikas ir kiti -->
+            <div class="main-section">
+                <div class="box-graph">
+                    <h2>Expenses by Category</h2>
+                    <div id="expensesChart"></div>
+                </div>
+                <div class="box-transactions">
+                    <h2>Last Transactions</h2>
+                    <ul id="transactionList">
+                    </ul>
+                </div>
+                <div class="box-goals">
+                    <h2>Goals</h2>
+                    <ul id="goalsList">
+                    </ul>
+                    <div class="goal-input">
+                        <input type="text" id="newGoal" placeholder="Add a new task" />
+                        <button id="addGoalBtn">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- islaidu irasymas -->
+    <div class="modal-overlay" id="expenseModal">
+        <div class="modal">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <h3>Add Expense</h3>
+            <label for="expenseAmount">Amount:</label>
+            <input type="number" id="expenseAmount" placeholder="Enter amount" />
+            <label for="expenseDesc">What did you buy?</label>
+            <input type="text" id="expenseDesc" placeholder="Description" />
+            
+            <label for="expenseCategory">Category:</label>
+        <select id="expenseCategory">
+            <option value="Food">Food</option>
+            <option value="Rent">Rent</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Miscellaneous">Miscellaneous</option>
+        </select>
+
+            <button onclick="submitExpense()">Submit</button>
+        </div>
+    </div>
+
+    <!-- pinigu pridejimas -->
+<div class="modal-overlay" id="incomeModal">
+    <div class="modal">
+        <span class="modal-close" id="closeIncomeModal">&times;</span>
+        <h3>Add Income</h3>
+        <label for="incomeAmount">Amount:</label>
+        <input type="number" id="incomeAmount" placeholder="Enter amount" />
+        <label for="incomeDesc">Description:</label>
+        <input type="text" id="incomeDesc" placeholder="Income description" />
+        <button onclick="submitIncome()">Submit</button>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
+    <script src="belek.js"></script>
 </body>
 </html>
