@@ -1,0 +1,54 @@
+<?php
+require_once("config.php");
+
+//uzklausa kuri tikrina ar email egzistuoja ir issiuncia i ta email tam tikra token, su kuriuo po to keis slaptazodi
+if ($_SERVER['REQUEST_METHOD']=='POST')
+{
+    $email=$_POST['email'];//gaunamas ivestas email
+
+    $result = $conn->query("SELECT * FROM users WHERE email='$email'");//sujungiamas ivestas email su egzistuojanciu duomenu bazeje
+    if ($result->num_rows > 0)//jei yra rysys (egzistuoja toks email), yra eilute su vartotoju
+    {
+
+        //uzklausa, kuri keicia slaptazodi
+        $new_password = $_POST['new-password'];
+        $confirm_password = $_POST['confirm-password'];
+
+        if($new_password === $confirm_password)//patikriname ar sutampa
+            {
+            $password_hash = password_hash($new_password, PASSWORD_BCRYPT);//uzhashuojam
+            $conn->query("UPDATE users SET password='$password_hash' WHERE email='$email'");
+            echo 'Password reset successful!'; //pranesam kad pavyko
+            }
+        else echo 'Passwords do not match!';
+    } 
+    else echo 'Email not found!'; //jei nerastas pranesti kad nerastas ir nedaryt operaciju
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Reset Password</h2>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"> <br>
+            <label for="email">Email Address:</label> 
+            <input type="email" id="email" name="email" required placeholder="Address@email"> <br>
+            
+            <label for="new-password">New Password:</label> 
+            <input type="password" id="new-password" name="new-password" required placeholder="New password"><br>
+            
+            <label for="confirm-password">Confirm New Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm new password"><br>
+            
+            <button type="submit" class="button">Reset Password</button>
+        </form>
+    </div>
+</body>
+</html>
