@@ -24,7 +24,7 @@
       }
       if (password_verify($password,$hashed_password)) // Patikrinama ar vartotojo suvestas slaptazodis ir hash'as saugomas db sutampa
       {
-        header('Location: home.html'); // Jei sutampa, tai perforwardina zmogu i puslapi dashboard.php 
+        header('Location: home.php'); // Jei sutampa, tai perforwardina zmogu i puslapi dashboard.php 
 
       }
       else echo 'Invalid username or password'; // Jei slaptazodis su hashu nesutampa, tada ismetamas error'as
