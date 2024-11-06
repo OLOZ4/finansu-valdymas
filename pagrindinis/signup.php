@@ -20,7 +20,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
             if($result->num_rows == 0 AND $result1->num_rows == 0) // Jei toks username ir email NEegzistuoja tada:
                 {
                     $result = $conn->query("INSERT INTO users (username,email,password) VALUES ('$username', '$email', '$password_hash')"); // I db username email ir passwords irasyti vartotojo ivestus duomenis 
-                    if ($result) echo 'Account creation was successful!'; // Jei  pavyko insertinti duomenis i db pranesti apie tai vartotojui
+                    if ($result) 
+                    {
+                        echo 'Account creation was successful!';//zemiau chatgpt HTML COUNTDOWN kodukas :)
+                        echo '
+                            <script>
+                                let countdown = 3;
+                                const countdownDisplay = setInterval(() => {
+                                    document.getElementById("countdown").innerText = countdown--;
+                                    if (countdown < 0) {
+                                        clearInterval(countdownDisplay);
+                                        window.location.href = "login.php"; // Redirect URL
+                                    }
+                            }, 1000);
+                            </script>
+                         <p>Redirecting in <span id="countdown">3</span> seconds...</p>
+                    ';
+                    }// Jei  pavyko insertinti duomenis i db pranesti apie tai vartotojui
                         else echo 'Error: ' . $conn->error_get_last; // Kitaip ismesti klaida
                 }
             else echo '<h1>Username or E-mail already exists</h1></br></br>'; // Jei email ar username sutampa, apie tai pranesti vartotojui
