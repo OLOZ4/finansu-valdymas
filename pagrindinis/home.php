@@ -1,4 +1,8 @@
 <?php
+
+
+
+   
 session_start(); // Start the session
 
 // Access the session variables
@@ -28,7 +32,12 @@ session_start(); // Start the session
                 <button class="btn"><i class="fa fa-cog"></i></button>
                 <button class="btn"><i class="fa fa-bell"></i></button>
                 <a href="login.php" >
-                    <button class="btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    
+                <form action="destroy_session.php" method="post">
+                <button class="btn" type="submit"><i class="fa-solid fa-right-from-bracket"></i> <!-- Destroy session --></button>
+                </form>
+
+                
                 </a>
             </div>
         </div>
