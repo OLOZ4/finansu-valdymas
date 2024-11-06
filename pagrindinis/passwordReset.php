@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
             echo 'Password reset successful! Redirecting in 3 seconds...';//pranesam kad pavyko, redirectinam po keliu sekundziu
             
             // Redirect to a desired page after 3 seconds
-            //html dalis, kuria galbut galima butu pagrazinti
+            //html dalis, kuria galbut galima butu pagrazinti. dariau su chatgpt tai nzn ar good
             echo '
                 <script>
                     let countdown = 3;
