@@ -48,10 +48,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Reset</title>
+    <link rel="stylesheet" href="forgotpsw.css">
 </head>
 <body>
 
-    <div class="container">
+    <div class="overlay">
         <h2>Reset Password</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"> <br>
             <label for="email">Email Address:</label> 
