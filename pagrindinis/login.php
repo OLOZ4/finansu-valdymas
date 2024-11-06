@@ -4,10 +4,11 @@
 
   // Handle the login form submission
   if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Patikrina ar html kode yra method=POST 
+    session_start(); // startuojama sesija
     $user = $_POST['username']; // Prilygina user kinamajam vartotojo ivesta username arba email formoje
     $symbol = "@"; // Naudojamas atskirti ar vartotojas ivede username ar email
     $password = $_POST['password']; // Prilygina password kinamajam vartotojo ivesta password formoje
-    
+    $_SESSION['username'] = $_POST['username'];
 
     // Patikrina ar vartotojas ivede savo username ar email, tai yra svarbu, nes kreipiantis i duombaze reikia zinoti ar ivesta vartotojo reiksme reikia tikrinti su email ar su username
     if (strpos($user,$symbol) == true) $kintamasis = 'email'; // Issiaiskina ar vartotojas ivede username ar email patirindamas ar kintamajame yra "@" zenkliukas, jei taip, kintamaji "kintamasis" prilygina reiksmei "email"

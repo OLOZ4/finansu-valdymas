@@ -1,3 +1,10 @@
+<?php
+session_start(); // Start the session
+
+// Access the session variables
+//echo $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +37,7 @@
         <div class="container">
             <!-- pasisveikinimas -->
             <div class="greeting">
-                <h1>Hello, Student!</h1>
+                <h1>Hello, <?php echo $_SESSION['username']; ?>!</h1>
             </div>
 
             <!-- 3 dezes -->
