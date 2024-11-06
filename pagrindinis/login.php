@@ -8,7 +8,6 @@
     $user = $_POST['username']; // Prilygina user kinamajam vartotojo ivesta username arba email formoje
     $symbol = "@"; // Naudojamas atskirti ar vartotojas ivede username ar email
     $password = $_POST['password']; // Prilygina password kinamajam vartotojo ivesta password formoje
-    $_SESSION['username'] = $_POST['username'];
 
     // Patikrina ar vartotojas ivede savo username ar email, tai yra svarbu, nes kreipiantis i duombaze reikia zinoti ar ivesta vartotojo reiksme reikia tikrinti su email ar su username
     if (strpos($user,$symbol) == true) $kintamasis = 'email'; // Issiaiskina ar vartotojas ivede username ar email patirindamas ar kintamajame yra "@" zenkliukas, jei taip, kintamaji "kintamasis" prilygina reiksmei "email"
@@ -25,8 +24,22 @@
       if (password_verify($password,$hashed_password)) // Patikrinama ar vartotojo suvestas slaptazodis ir hash'as saugomas db sutampa
       {
         header('Location: home.php'); // Jei sutampa, tai perforwardina zmogu i puslapi dashboard.php 
-
+        if ($kintamasis == 'email')
+        {
+          $result = $conn->query("SELECT username FROM users WHERE $kintamasis='$user'"); // Suformuojama uzklausa i db ir kintamajam "result" prilyginamas uzklausos atsakymas 
+          if ($result->num_rows > 0) 
+          {
+            while ($row = $result->fetch_assoc()) 
+            {
+              $_SESSION['username'] = $row['username'];
+              break;
+            }
+          }
+        }
+        else $_SESSION['username'] = $_POST['username']; // session username
+        
       }
+
       else echo 'Invalid username or password'; // Jei slaptazodis su hashu nesutampa, tada ismetamas error'as
     }
     else echo 'Invalid username or password'; // Jei nerastas db vartotojo ivestas username ar email
