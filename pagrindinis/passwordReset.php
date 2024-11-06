@@ -18,7 +18,23 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
             {
             $password_hash = password_hash($new_password, PASSWORD_BCRYPT);//uzhashuojam
             $conn->query("UPDATE users SET password='$password_hash' WHERE email='$email'");
-            echo 'Password reset successful!'; //pranesam kad pavyko
+            echo 'Password reset successful! Redirecting in 3 seconds...';//pranesam kad pavyko, redirectinam po keliu sekundziu
+            
+            // Redirect to a desired page after 3 seconds
+            //html dalis, kuria galbut galima butu pagrazinti
+            echo '
+                <script>
+                    let countdown = 3;
+                    const countdownDisplay = setInterval(() => {
+                        document.getElementById("countdown").innerText = countdown--;
+                        if (countdown < 0) {
+                            clearInterval(countdownDisplay);
+                            window.location.href = "login.php"; // Redirect URL
+                        }
+                    }, 1000);
+                </script>
+                <p>Redirecting in <span id="countdown">3</span> seconds...</p>
+            ';
             }
         else echo 'Passwords do not match!';
     } 
