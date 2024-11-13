@@ -31,14 +31,11 @@ session_start(); // Start the session
             <div class="button-container">
                 <button class="btn"><i class="fa fa-cog"></i></button>
                 <button class="btn"><i class="fa fa-bell"></i></button>
-                <a href="login.php" >
-                    
+                
+               <a href="login.php"></a>
                 <form action="destroy_session.php" method="post">
                 <button class="btn" type="submit"><i class="fa-solid fa-right-from-bracket"></i> <!-- Destroy session --></button>
                 </form>
-
-                
-                </a>
             </div>
         </div>
 
