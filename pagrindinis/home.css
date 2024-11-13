@@ -57,6 +57,11 @@ body {
   color: white;
 }
 
+.fa-solid
+{
+  color:red;
+}
+
 .greeting {
   grid-column: 1 / span 3;
   text-align: left;
