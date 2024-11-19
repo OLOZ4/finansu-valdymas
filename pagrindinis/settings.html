@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
+    <style>
+        body {
+            background: linear-gradient(to top right, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Navbaras */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Navbaro mygtukai */
+        .navbar button {
+            background-color: #4e5d6c;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar button:hover {
+            background-color: #6c7985; 
+            color: #f1f1f1; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Icono mygtukai */
+        .icon-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            font-size: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .icon-btn i {
+            color: #ffffff; 
+        }
+
+        .icon-btn:hover i {
+            color: #f1f1f1; 
+            transform: scale(1.2); 
+        }
+
+        .logout-icon:hover i {
+            color: #ff4d4d; 
+            transform: scale(1.2); 
+        }
+
+        .navbar img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        /* Profiline navabare */
+        .navbar-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ffffff;
+        }
+
+        /* Containeriukai */
+        .container {
+            width: 550px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Profilio nuotrauka */
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* textas po profiliu */
+        .change-profile-text {
+            color: #1f8cf8;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Info */
+        .info-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-label {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .info-instructions {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* mygtuku styling */
+        .change-btn, .delete-btn {
+            background-color: #1f8cf8;
+            color: #ffffff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hoveris */
+        .change-btn:hover {
+            background-color: #1557bf; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .delete-btn {
+            color: red;
+        }
+
+        /* Hoveris delete mygt */
+        .delete-btn:hover {
+            background-color: #bf1515; 
+            color: #ffffff; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* atgal stylingas */
+        .back-btn {
+            background-color: #1f8cf8;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px; 
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .back-btn:hover {
+            background-color: #1557bf;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbaras -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <img src="logo.png" alt="Logo">
+            <button onclick="location.href='analytics.html'">Analytics</button>
+            <button onclick="location.href='about.html'">About</button>
+        </div>
+        <div class="navbar-right">
+            <!-- Iconos -->
+            <button class="icon-btn" title="Settings" onclick="location.href='settings.html'">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <button class="icon-btn" title="Notifications" onclick="location.href='notifications.html'">
+                <i class="fa-solid fa-bell"></i>
+            </button>
+            <a href="login.php">
+            <button class="icon-btn logout-icon" title="Logout" onclick="location.href='logout.html'">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+            </a>
+            <div class="navbar-profile"></div> <!-- Profilio nuotrauka -->
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="container" style="margin-top: 60px;">
+        <!-- Profile Picture -->
+        <div class="profile-pic">
+            <p>Logo</p>
+        </div>
+        <div class="change-profile-text">Change profile picture</div>
+
+        <!-- User informacija -->
+        <div class="info-section">
+            <div class="info-text">
+                <div class="info-label">Username</div>
+                <div class="info-instructions">Pick a unique name others will see.</div>
+            </div>
+            <button class="change-btn">Change</button>
+        </div>
+
+        <div class="info-section">
+            <div class="info-text">
+                <div class="info-label">Email Address</div>
+                <div class="info-instructions">Use a valid email for updates.</div>
+            </div>
+            <button class="change-btn">Change</button>
+        </div>
+
+        <div class="info-section">
+            <div class="info-text">
+                <div class="info-label">Password</div>
+                <div class="info-instructions">Use 8+ characters for security.</div>
+            </div>
+            <button class="change-btn">Change</button>
+        </div>
+
+        <div class="info-section">
+            <div class="info-text">
+                <div class="info-label">Deletion</div>
+                <div class="info-instructions">Confirm deletion carefully.</div>
+            </div>
+            <button class="delete-btn">Delete</button>
+        </div>
+
+        <!-- Back to Main mygtukas -->
+        <button class="back-btn" onclick="location.href='home.php'">Back to Main</button>
+    </div>
+</body>
+</html>
