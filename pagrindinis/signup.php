@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
                 }
             else echo '<h1>Username or E-mail already exists</h1></br></br>'; // Jei email ar username sutampa, apie tai pranesti vartotojui
         }
-    else echo '<h1>Passwords do not match!</h1>'; // Pranesti kad slaptazodziai nesutampa
+        else echo '<h1>Passwords do not match!</h1>'; // Pranesti kad slaptazodziai nesutampa
+}
 ?>
 
 <!DOCTYPE html>
