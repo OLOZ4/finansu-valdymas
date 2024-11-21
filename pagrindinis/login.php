@@ -69,7 +69,9 @@
                 </div>
                 <button type="submit" class="button login-submit">Submit</button>
                 <div class="input-group"></div>
+                <a href="password_reset.php">
                 <button type="button" class="button forgot-password">Forgot Password?</button>
+                </a>
                 </div>
             </form>
         </div>

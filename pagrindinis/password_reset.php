@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Reset</title>
-    <link rel="stylesheet" href="forgotpsw.css">
+    <link rel="stylesheet" href="password_reset.css">
 </head>
 <body>
 
