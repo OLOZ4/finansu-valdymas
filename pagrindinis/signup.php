@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="signupde.css">
+    <link rel="stylesheet" href="signup.css">
 </head>
 <body>
 
