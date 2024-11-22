@@ -25,8 +25,12 @@ session_start(); // Start the session
         <!-- virsutinis baras -->
         <div class="top-bar">
             <div class="button-container">
+                <a href="analytics.html">
                 <button>Analytics</button>
+                </a>
+                <a href="about.html">
                 <button>About</button>
+                </a>
             </div>
             <div class="button-container">
                 <a href="settings.html">
