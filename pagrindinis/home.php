@@ -29,7 +29,9 @@ session_start(); // Start the session
                 <button>About</button>
             </div>
             <div class="button-container">
+                <a href="settings.html">
                 <button class="btn"><i class="fa fa-cog"></i></button>
+                </a>
                 <button class="btn"><i class="fa fa-bell"></i></button>
                 
                <a href="login.php"></a>
