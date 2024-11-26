@@ -118,6 +118,7 @@ session_start(); // Start the session
             <option value="Entertainment">Entertainment</option>
             <option value="Miscellaneous">Miscellaneous</option>
         </select>
+
             <button onclick="submitExpense()">Submit</button>
         </div>
     </div>

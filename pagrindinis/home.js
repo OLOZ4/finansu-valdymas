@@ -53,14 +53,12 @@ function updateBalance() {
 }
 
 // modal incomui
-document.getElementById('incomeModal').innerHTML += '<button id="closeIncomeModal">X</button>';
-document.getElementById('closeIncomeModal').addEventListener('click', function() {
-document.getElementById('incomeModal').style.display = 'none';
+document.getElementById('addIncomeBtn').addEventListener('click', function() {
+    document.getElementById('incomeModal').style.display = 'flex';
 });
 // modal islaidom
-document.getElementById('expenseModal').innerHTML += '<button id="closeModal" X</button>';
-document.getElementById('closeExpenseModal').addEventListener('click', function() {
-document.getElementById('expenseModal').style.display = 'none';
+document.getElementById('addExpenseBtn').addEventListener('click', function() {
+    document.getElementById('expenseModal').style.display = 'flex';
 });
 
 // uzdarom incomo modal
