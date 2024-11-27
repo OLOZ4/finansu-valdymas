@@ -103,8 +103,23 @@ function submitExpense() {
     const amount = parseFloat(document.getElementById('expenseAmount').value);
     const description = document.getElementById('expenseDesc').value;
     const category = document.getElementById('expenseCategory').value; // leidzia pasirinkti expense type
-
+    
+    console.log(category); // for testing
     if (!isNaN(amount) && description.trim() !== "") {
+
+
+        try {
+            fetch("update_expenses.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `amount=${amount}&category=${category}`
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        } catch (error) {
+            console.error("Error submitting expense:", error);
+        }
 
         if (expenseCategories[category]) {
             expenseCategories[category] += amount;

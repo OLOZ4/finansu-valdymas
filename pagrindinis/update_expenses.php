@@ -1,59 +1,42 @@
-// update_expenses.php
-
 <?php
+require_once("config.php");
 
-
-// Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+// Check for connection errors
+if ($conn->connect_error) {
+    die('Connect Error: ' . $conn->connect_error);
 }
+
+// Set error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Log messages to the console
+function log_message($message) {
+    echo "[LOG] " . date('Y-m-d H:i:s') . ": " . $message . "\n";
+}
+
 
 // Get the expense data from the form
 $amount = $_POST['amount'];
 $category = $_POST['category'];
 
-// Update the expenses table
-/*
-$query = "UPDATE expenses SET amount = ?, category = ? WHERE id = ?";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("iii", $amount, $category, $id);
-$stmt->execute();
-*/
 
-$query = $conn->query("INSERT INTO test (amount,category) VALUES ('$amount, '$category')");
-
-$query = $conn->prepare("INSERT INTO test (amount, category) VALUES (:amount, :category)");
-$query->bind_param(":amount", $amount);
-$query->bind_param(":category", $category);
-try {
-    $query->execute();
-} catch (Exception $e) {
-    echo "Error inserting data: " . $e->getMessage();
+// Define the update expenses function
+function update_expenses($conn, $amount, $category) {
+    // Prepare query
+    $stmt = $conn->prepare('INSERT INTO expenses (amount, category) VALUES (?, ?)');
+    
+    // Bind parameters
+    $stmt->bind_param('ii', $amount, $category);
+    
+    // Execute query
+    if (!$stmt->execute()) {
+        log_message("Error executing query: " . $stmt->error);
+        die('Query failed: ' . $stmt->error);
+    }
 }
 
-// Close the database connection
-$mysqli->close();
+// Test the function
+update_expenses($conn, $amount, $category);
 
-
-
-/*
-    // code for home.js
- try {
-        fetch("update_expenses.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `amount=${amount1}&category=${category1}`
-        })
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
-    } catch (error) {
-        console.error("Error submitting expense:", error);
-    }
-
-
-
-
-
-*/
 ?>
