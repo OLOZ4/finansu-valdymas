@@ -56,15 +56,21 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
         <div class="forgot-password-box">
             <h2>Reset Password</h2>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"> <br>
+                <div class="input-group">
                 <label for="email">Email Address:</label> 
-                <input type="email" id="email" name="email" required placeholder="Address@email"> <br>
-            
+                <input type="email" id="email" name="email" required placeholder="Address@email">
+                </div>
+
+                <div class="input-group">
                 <label for="new-password">New Password:</label> 
-                <input type="password" id="new-password" name="new-password" required placeholder="New password"><br>
-            
+                <input type="password" id="new-password" name="new-password" required placeholder="New password">
+                </div>
+
+                <div class="input-group">
                 <label for="confirm-password">Confirm New Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm new password"><br>
-            
+                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm new password">
+                </div>
+
                 <button type="submit" class="button">Reset Password</button>
             </form>
         </div>
