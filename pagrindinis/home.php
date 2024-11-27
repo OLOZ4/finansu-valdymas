@@ -38,7 +38,7 @@ session_start(); // Start the session
                 </a>
                 <button class="btn"><i class="fa fa-bell"></i></button>
                 
-               <a href="login.php"></a>
+                <a href="login.php"></a>
                 <form action="destroy_session.php" method="post">
                 <button class="btn" type="submit"><i class="fa-solid fa-right-from-bracket"></i> <!-- Destroy session --></button>
                 </form>

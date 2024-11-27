@@ -5,7 +5,7 @@
 }
 
 body {
-  height: 100vh;
+  height: 110vh;
   background: linear-gradient(to top right, #0f2027, #203a43, #2c5364);
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 60px;
+  height: 64px;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.3);
@@ -29,18 +29,14 @@ body {
 }
 
 .top-bar button {
-  padding: 7px 12px;
-  margin: 0 5px;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
-  background-color: rgba(211, 211, 211, 0.7);
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: #4e5d6c;
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
 }
 
 .top-bar button:hover {
