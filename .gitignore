@@ -1,0 +1,8 @@
+# Ignore MySQL files
+mysql/
+mysql-logs/
+
+# Ignore any files or folders within the ignored directories
+/**/*.php
+/**/*.sql
+/**/*.log

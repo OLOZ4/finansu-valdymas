@@ -24,7 +24,7 @@ services:
         env_file:
             - mysql.env
         volumes:
-            #- ./mysql:/var/lib/mysql
+            - ./mysql:/var/lib/mysql
             - ./mysql-log:/var/log/mysql
             - ./docker/mysql/init.sql:/data/application/init.sql    
         depends_on:
