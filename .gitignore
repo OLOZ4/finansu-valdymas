@@ -6,3 +6,7 @@ mysql-logs/
 /**/*.php
 /**/*.sql
 /**/*.log
+
+# Ignore all visual studio (vs) files
+
+*.vs
