@@ -22,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
                     $result = $conn->query("INSERT INTO users (username,email,password) VALUES ('$username', '$email', '$password_hash')"); // I db username email ir passwords irasyti vartotojo ivestus duomenis 
                     if ($result)
                     {
+                        
+
+
                         echo 'Account creation was successful!'; // Jei  pavyko insertinti duomenis i db pranesti apie tai vartotojui
                         // Redirect to a desired page after 3 seconds
                         //html dalis, kuria galbut galima butu pagrazinti. dariau su chatgpt tai nzn ar good
@@ -38,6 +41,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
                             </script>
                             <p>Redirecting in <span id="countdown">3</span> seconds...</p>
                         ';
+                        //-----------This part of code is mandatory for update_income.php to work properly DO NOT MODIFY IT--------------//
+                        
+                        // Finding user ID when only knowing it's username
+
+                        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+                        $stmt->bind_param("s", $username);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $user_id = $row["id"];
+                                break;
+                            }
+                        }
+                        
+                        $_SESSION['user_id'] = $user_id; // Setting user_id as session variable
+
+                        // Inserting in income table data user id and income 0
+                        $amount = 0.00;
+                        
+                        $stmt1 = $conn->prepare('INSERT INTO income (user_id, amount) VALUES (?, ?)');
+                        $stmt1->bind_param('id', $user_id, $amount);
+                        $stmt1->execute();
+                        die();
+                        // Execute query
+
+                        if (!$stmt1->execute()) {
+                            log_message("Error executing query: " . $stmt->error);
+                            die('Query failed: ' . $stmt->error);
+                        }
+                        
+                        //----------------------------------------------------------------------------------------------------------------//
                     } 
                         else echo 'Error: ' . $conn->error_get_last; // Kitaip ismesti klaida
                 }

@@ -23,6 +23,25 @@
       }
       if (password_verify($password,$hashed_password)) // Patikrinama ar vartotojo suvestas slaptazodis ir hash'as saugomas db sutampa
       {
+        //------------DO NOT MODIFY IT--------------------------------//
+        // Finding user ID when only knowing it's username
+
+        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $user_id = $row["id"];
+                break;
+            }
+        }
+        
+        $_SESSION['user_id'] = $user_id; // Setting user_id as session variable
+
+        //-------------------------------------------------------------------//
+
         header('Location: home.php'); // Jei sutampa, tai perforwardina zmogu i puslapi dashboard.php 
         if ($kintamasis == 'email')
         {

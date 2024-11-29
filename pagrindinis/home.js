@@ -73,8 +73,23 @@ document.getElementById('closeModal').addEventListener('click', function() {
 function submitIncome() {
     const amount = parseFloat(document.getElementById('incomeAmount').value);
     const description = document.getElementById('incomeDesc').value;
-
+    console.log(amount); // for testing
     if (!isNaN(amount) && description.trim() !== "") {
+
+        //***************************************** */ BACKEND
+        try {
+            fetch("update_income.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `amount=${amount}`
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        } catch (error) {
+            console.error("Error submitting expense:", error);
+        }
+        //***************************************** */
         // income i tranzakcijas
         const transactionList = document.getElementById('transactionList');
         const li = document.createElement('li');

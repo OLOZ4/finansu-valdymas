@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS expenses (
 id INT PRIMARY KEY AUTO_INCREMENT,
 user_id INT,
-amount DECIMAL(10, 2),
+amount DECIMAL(50, 2),
 category VARCHAR(50),
 FOREIGN KEY (user_id) REFERENCES users (id)
 );
@@ -26,7 +26,7 @@ FOREIGN KEY (user_id) REFERENCES users (id)
 CREATE TABLE IF NOT EXISTS income (
 id INT PRIMARY KEY AUTO_INCREMENT,
 user_id INT,
-amount DECIMAL(10, 2),
+amount DECIMAL(50, 2),
 FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
