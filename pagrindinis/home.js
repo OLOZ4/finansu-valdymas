@@ -81,7 +81,7 @@ function submitIncome() {
             fetch("update_income.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `amount=${amount}`
+                body: `amount=${amount}&description=${description}`
             })
             .then(response => response.text())
             .then(data => console.log(data))
@@ -127,7 +127,7 @@ function submitExpense() {
             fetch("update_expenses.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `amount=${amount}&category=${category}`
+                body: `amount=${amount}&category=${category}&description=${description}`
             })
             .then(response => response.text())
             .then(data => console.log(data))

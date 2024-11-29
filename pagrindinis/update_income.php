@@ -18,16 +18,17 @@ function log_message($message) {
 
 // Get the expense data from the form and some global sesion variables
 $amount = $_POST['amount'];
+$description = $_POST['description'];
 $username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
 
 // Define the update expenses function
-function update_income($conn, $user_id, $amount, ) {
-    
-    $stmt = $conn->prepare('UPDATE income SET amount = amount + ? WHERE user_id = ?');
+function update_income($conn, $user_id, $amount, $description) {
+    // Insert a new row into the income table
+    $stmt = $conn->prepare('INSERT INTO income (user_id, amount, description) VALUES (?, ?, ?)');
     
     // Bind parameters
-    $stmt->bind_param('is', $amount, $user_id);
+    $stmt->bind_param('dds', $user_id, $amount, $description);
     
     // Execute query
     if (!$stmt->execute()) {
@@ -39,6 +40,6 @@ function update_income($conn, $user_id, $amount, ) {
 // Execute function
 
 
-update_income($conn, $user_id, $amount);
+update_income($conn, $user_id, $amount, $description);
 
 ?>

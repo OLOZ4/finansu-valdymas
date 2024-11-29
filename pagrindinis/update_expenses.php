@@ -17,28 +17,33 @@ function log_message($message) {
 }
 
 
-// Get the expense data from the formž
+// Get the expense data from the form
 $amount = $_POST['amount'];
 $category = $_POST['category'];
+$description = $_POST['description'];
 $username = $_SESSION['username'];
+$user_id = $_SESSION['user_id'];
+
 
 
 // Define the update expenses function
-function update_expenses($conn, $username, $amount, $category) {
+function update_expenses($conn, $user_id, $amount, $category, $description) {
+    
+    log_message($user_id);
+
     // Prepare query
-    $stmt = $conn->prepare('INSERT INTO expenses (user_id, amount, category) VALUES (?, ?)');
+    $stmt = $conn->prepare('INSERT INTO expenses (user_id, amount, category, description) VALUES (?, ?, ?, ?)');
     
     // Bind parameters
-    $stmt->bind_param('sis', $amount, $category);
+    $stmt->bind_param('idss', $user_id, $amount, $category, $description);
     
     // Execute query
     if (!$stmt->execute()) {
         log_message("Error executing query: " . $stmt->error);
         die('Query failed: ' . $stmt->error);
     }
-}
 
-// Test the function
-update_expenses($conn, $username, $amount, $category);
+}
+update_expenses($conn, $user_id, $amount, $category, $description);
 
 ?>
