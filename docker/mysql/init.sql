@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS expenses (
 id INT PRIMARY KEY AUTO_INCREMENT,
 user_id INT,
-date DATE,
 amount DECIMAL(10, 2),
 category VARCHAR(50),
 FOREIGN KEY (user_id) REFERENCES users (id)
@@ -27,19 +26,16 @@ FOREIGN KEY (user_id) REFERENCES users (id)
 CREATE TABLE IF NOT EXISTS income (
 id INT PRIMARY KEY AUTO_INCREMENT,
 user_id INT,
-date DATE,
 amount DECIMAL(10, 2),
-category VARCHAR(50),
 FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 -- Create table combining user's expenses and income 
 
 CREATE TABLE IF NOT EXISTS user_balance ( 
+id INT PRIMARY KEY AUTO_INCREMENT,
 user_id INT, 
-date DATE, 
 balance DECIMAL(10, 2), 
-PRIMARY KEY (user_id, date), 
 FOREIGN KEY (user_id) REFERENCES users (id) 
 ); 
 
@@ -55,32 +51,29 @@ password = VALUES(password);
 
 -- Inserting sample data for expenses and and income tables
 
-INSERT INTO expenses (user_id, date, amount, category) VALUES
-(1, '2022-01-01', 100.00, 'Food'),
-(1, '2022-01-15', 50.00, 'Transportation'),
-(2, '2022-02-01', 200.00, 'Rent'),
-(2, '2022-02-15', 50.00, 'Utilities'),
-(2, '2022-03-01', 300.00, 'Salary'),
-(2, '2022-03-15', 25.00, 'Food'),
-(1, '2022-04-01', 150.00, 'Shopping'),
-(2, '2022-04-15', 100.00, 'Entertainment')
+INSERT INTO expenses (user_id, amount, category) VALUES
+(1, 100.00, 'Food'),
+(1, 50.00, 'Transportation'),
+(2, 200.00, 'Rent'),
+(2, 50.00, 'Utilities'),
+(2, 300.00, 'Salary'),
+(2, 25.00, 'Food'),
+(1, 150.00, 'Shopping'),
+(2, 100.00, 'Entertainment')
+
 
 ON DUPLICATE KEY UPDATE
   user_id = VALUES(user_id),
-  date = VALUES(date),
   amount = VALUES(amount),
   category = VALUES(category);
 
-INSERT INTO income (user_id, date, amount, category) VALUES
-(1, '2022-01-01', 500.00, 'Salary'),
-(1, '2022-02-15', 1000.00, 'Salary'),
-(2, '2022-03-01', 800.00, 'Salary'),
-(1, '2022-04-01', 1200.00, 'Salary'),
-(2, '2022-05-01', 600.00, 'Investments')
+INSERT INTO income (user_id, amount) VALUES
+(1, 500.00),
+(1, 1000.00),
+(2, 800.00),
+(1, 1200.00),
+(2, 600.00)
 
 ON DUPLICATE KEY UPDATE
   user_id = VALUES(user_id),
-  date = VALUES(date),
-  amount = VALUES(amount),
-  category = VALUES(category);
-
+  amount = VALUES(amount);
