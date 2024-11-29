@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("config.php");
 
 // Check for connection errors
@@ -16,18 +17,19 @@ function log_message($message) {
 }
 
 
-// Get the expense data from the form
+// Get the expense data from the formž
 $amount = $_POST['amount'];
 $category = $_POST['category'];
+$username = $_SESSION['username'];
 
 
 // Define the update expenses function
-function update_expenses($conn, $amount, $category) {
+function update_expenses($conn, $username, $amount, $category) {
     // Prepare query
-    $stmt = $conn->prepare('INSERT INTO expenses (amount, category) VALUES (?, ?)');
+    $stmt = $conn->prepare('INSERT INTO expenses (user_id, amount, category) VALUES (?, ?)');
     
     // Bind parameters
-    $stmt->bind_param('ii', $amount, $category);
+    $stmt->bind_param('sis', $amount, $category);
     
     // Execute query
     if (!$stmt->execute()) {
@@ -37,6 +39,6 @@ function update_expenses($conn, $amount, $category) {
 }
 
 // Test the function
-update_expenses($conn, $amount, $category);
+update_expenses($conn, $username, $amount, $category);
 
 ?>
