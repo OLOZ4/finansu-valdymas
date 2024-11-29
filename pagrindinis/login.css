@@ -25,6 +25,11 @@ body {
     text-align: center;
 }
 
+.login-box h2 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
 
 .input-group {
     margin-bottom: 15px; 
