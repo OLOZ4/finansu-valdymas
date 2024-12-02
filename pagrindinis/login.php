@@ -75,26 +75,26 @@
 </head>
 <body>
     <div class="overlay">
-        <div class="login-box">
-          <img src="logo.png" alt="Logo" class="logo">
+        <div class="login-container">
+            <img src="logo.png" alt="Logo" class="logo">
             <div class="login-box">
-            <h2>LOGIN</h2>
-            <form id="loginForm" action="login.php" method="post">
-                <div class="input-group">
-                    <label for="username">Username or email</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="button login-submit">Submit</button>
-                <div class="input-group"></div>
-                <a href="password_reset.php">
-                <button type="button" class="button forgot-password">Forgot Password?</button>
-                </a>
-                </div>
-            </form>
+                <h2>LOGIN</h2>
+                <form id="loginForm" action="login.php" method="post">
+                    <div class="input-group">
+                        <label for="username">Username or email</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="button login-submit">Submit</button>
+                    <div class="input-group"></div>
+                    <a href="password_reset.php">
+                        <button type="button" class="button forgot-password">Forgot Password?</button>
+                    </a>
+                </form>
+            </div>
         </div>
     </div>
 </body>
