@@ -76,7 +76,9 @@
 <body>
     <div class="overlay">
         <div class="login-box">
-            <h2>Login</h2>
+          <img src="logo.png" alt="Logo" class="logo">
+            <div class="login-box">
+            <h2>LOGIN</h2>
             <form id="loginForm" action="login.php" method="post">
                 <div class="input-group">
                     <label for="username">Username or email</label>
