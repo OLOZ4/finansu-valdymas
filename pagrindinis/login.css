@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     height: 100vh;
@@ -10,8 +9,31 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: relative;
     overflow: hidden;
+}
+
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%; 
+    margin-right: 20px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%; 
+}
+
+.logo {
+    width: 150px; /
+    margin-bottom: 20px;
 }
 
 .login-box {
@@ -23,6 +45,7 @@ body {
     max-width: 350px;
     backdrop-filter: blur(10px);
     text-align: center;
+    margin: 0 auto; 
 }
 
 .login-box h2 {
@@ -32,7 +55,7 @@ body {
 }
 
 .input-group {
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -41,27 +64,23 @@ body {
     font-size: 14px;
     display: block;
     margin-bottom: 5px;
-    text-align: left;
 }
 
 .input-group input {
-    width: 95%; 
+    width: 95%;
     padding: 10px;
-    font-size: 14px; 
+    font-size: 14px;
     border: none;
-    border-radius: 5px; 
+    border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .input-group input:focus {
     outline: none;
     box-shadow: 0 4px 10px rgba(0, 123, 255, 0.5);
 }
-
 
 .button {
     padding: 12px 0;
@@ -83,7 +102,6 @@ body {
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.7);
 }
 
-
 .forgot-password {
     margin-top: 10px;
     text-align: center;
@@ -98,20 +116,4 @@ body {
 
 .forgot-password a:hover {
     color: #007BFF;
-}
-
-.submit-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.submit-group .button, .submit-group .forgot-password {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.submit-group .forgot-password {
-    margin-top: 5px;
 }
