@@ -92,14 +92,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
     <link rel="stylesheet" href="signup.css">
 </head>
 <body>
-
     <div class="overlay">
+        
+        <img src="logo.png" alt="Logo" class="logo">
+        
+        
         <div class="signup-box">
             <h1>SIGN UP</h1>
 
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                
-              <form id="signup-form" action="home.html" method="GET">
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"></form>
+
+            <form id="signup-form" action="home.html" method="GET">
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required placeholder="Enter your username">
@@ -124,8 +127,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
             </form>
         </div>
     </div>
-
 </body>
 </html>
-   
-                
