@@ -26,7 +26,7 @@
         //------------DO NOT MODIFY IT--------------------------------//
         // Finding user ID when only knowing it's username
 
-        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+        $stmt = $conn->prepare("SELECT id FROM users WHERE $kintamasis = ?");
         $stmt->bind_param("s", $user);
         $stmt->execute();
         $result = $stmt->get_result();
