@@ -7,6 +7,9 @@ body {
     align-items: center;
     background: linear-gradient(to top right, #0f2027, #203a43, #2c5364);
 }
+.overlay {
+    margin-top: -180px;
+}
 .box {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -15,12 +18,16 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.3);
 
 }
-.button-container {
+.button-container a {
     text-align: center;
+    display: block;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
 }
 .button {
     padding: 15px 0;
-    margin: 10px;
+    margin: 10px 5px;
     font-size: 15px;
     cursor: pointer;
     border: none;
@@ -40,27 +47,12 @@ body {
     background-image: linear-gradient(to right, #28a745, #42f57b);
     box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5);
 }
-.signup-button:hover {
-    background-image: linear-gradient(to right, #218838, #28d17c);
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.7);
-}
-.small-button {
-    padding: 10px 20px;
-    font-size: q0px;
-    cursor: pointer;
-    border: none;
-    border-radius: 50px;
-    color: white;
-    width: 120px;
-    background-image: linear-gradient(to right, #ff7e5f, #feb47b);
-    box-shadow: 0 4px 15px rgba(255, 126, 95, 0.5);
-    transition: all 0.3s ease;
-    margin-top: 15px;
-}
 
-.small-button:hover {
-    background-image: linear-gradient(to right, #1600bc, #0161c8);
-    transform: scale(1.1);
-    box-shadow: 0 5px 12px rgba(20, 53, 91, 0.7);
+.logo
+{
+    display: block;
+    margin: 0 auto 20px;
+    width: 170px;
+    margin-bottom: 60px;
+    
 }
