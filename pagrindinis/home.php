@@ -15,7 +15,7 @@ session_start(); // Start the session
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAGRINDINIS</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
 </head>
@@ -25,23 +25,27 @@ session_start(); // Start the session
         <!-- virsutinis baras -->
         <div class="top-bar">
             <div class="button-container">
-                <a href="analytics.html">
-                <button>Analytics</button>
+                <a href="main.html">
+                <img src = "logo.png" alt="logo" class="logo">
                 </a>
                 <a href="about.html">
                 <button>About</button>
                 </a>
             </div>
-            <div class="button-container">
+            <div class="button-container right-buttons">
                 <a href="settings.html">
                 <button class="btn"><i class="fa fa-cog"></i></button>
                 </a>
                 <button class="btn"><i class="fa fa-bell"></i></button>
                 
-                <a href="login.php"></a>
+                <a href="login.php">
                 <form action="destroy_session.php" method="post">
                 <button class="btn" type="submit"><i class="fa-solid fa-right-from-bracket"></i> <!-- Destroy session --></button>
-                </form>
+                </a>
+            </form>
+                <div class="navbar-profile">
+                    <img src="profile-pic.jpg" alt="Profile Picture" class="profile-img">
+                </div>
             </div>
         </div>
 
@@ -56,15 +60,15 @@ session_start(); // Start the session
             <div class="header">
                 <div class="box balance">
                     <h2>Balance</h2>
-                    <p id="balanceValue">$0</p>
+                    <p id="balanceValue">€0</p>
                 </div>
                 <div class="box income">
                     <h2>Incomes</h2>
-                    <p id="incomeValue">$0</p>
+                    <p id="incomeValue">€0</p>
                 </div>
                 <div class="box expenses">
                     <h2>Expenses</h2>
-                    <p id="expenseValue">$0</p>
+                    <p id="expenseValue">€0</p>
                     <button class="period-btn" id="selectPeriod">Select Period</button>
                 </div>
             </div>
@@ -73,7 +77,6 @@ session_start(); // Start the session
             <div class="actions buttons-between">
                 <button class="action-btn" id="addIncomeBtn"><i class="fa fa-plus-circle"></i> Add Income</button>
                 <button class="action-btn" id="addExpenseBtn"><i class="fa fa-minus-circle"></i> Add Expense</button>
-                <button class="action-btn"><i class="fa fa-exchange-alt"></i> Transfer Money</button>
             </div>
 
             <!-- pagrindines sekcijos, kur grafikas ir kiti -->
@@ -138,6 +141,6 @@ session_start(); // Start the session
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
-    <script src="home.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
