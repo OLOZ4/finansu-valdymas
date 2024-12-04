@@ -39,17 +39,17 @@ function updateExpenseChart() {
 
 // padarom kad butu 0
 function initializeValues() {
-    document.getElementById('incomeValue').innerText = '$0.00';
-    document.getElementById('expenseValue').innerText = '$0.00';
-    document.getElementById('balanceValue').innerText = '$0.00';
+    document.getElementById('incomeValue').innerText = '€0.00';
+    document.getElementById('expenseValue').innerText = '€0.00';
+    document.getElementById('balanceValue').innerText = '€0.00';
 }
 
 // atnaujinimo funckija, kuri reaguos i mygtukus
 function updateBalance() {
-    let currentIncome = parseFloat(document.getElementById("incomeValue").innerText.replace('$', ''));
-    let currentExpense = parseFloat(document.getElementById("expenseValue").innerText.replace('$', ''));
+    let currentIncome = parseFloat(document.getElementById("incomeValue").innerText.replace('€', ''));
+    let currentExpense = parseFloat(document.getElementById("expenseValue").innerText.replace('€', ''));
     let balance = currentIncome - currentExpense;
-    document.getElementById("balanceValue").innerText = '$' + balance.toFixed(2);
+    document.getElementById("balanceValue").innerText = '€' + balance.toFixed(2);
 }
 
 // modal incomui
@@ -93,13 +93,13 @@ function submitIncome() {
         // income i tranzakcijas
         const transactionList = document.getElementById('transactionList');
         const li = document.createElement('li');
-        li.textContent = `$${amount.toFixed(2)} - ${description} (Income)`;
+        li.textContent = `€${amount.toFixed(2)} - ${description} (Income)`;
         transactionList.appendChild(li);
 
         // upatatinam incoma
         let currentIncome = parseFloat(document.getElementById("incomeValue").innerText.replace('$', ''));
         currentIncome += amount;
-        document.getElementById("incomeValue").innerText = '$' + currentIncome.toFixed(2);
+        document.getElementById("incomeValue").innerText = '€' + currentIncome.toFixed(2);
 
         // updatinam balansa
         updateBalance();
@@ -145,13 +145,13 @@ function submitExpense() {
         // nauja tranzakcija
         const transactionList = document.getElementById('transactionList');
         const li = document.createElement('li');
-        li.textContent = `$${amount.toFixed(2)} - ${description} (${category})`;
+        li.textContent = `€${amount.toFixed(2)} - ${description} (${category})`;
         transactionList.appendChild(li);
 
         // updatas
         let currentExpense = parseFloat(document.getElementById("expenseValue").innerText.replace('$', ''));
         currentExpense += amount;
-        document.getElementById("expenseValue").innerText = '$' + currentExpense.toFixed(2);
+        document.getElementById("expenseValue").innerText = '€' + currentExpense.toFixed(2);
 
         // dar vienas
         updateBalance();
