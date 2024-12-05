@@ -83,13 +83,7 @@ function submitIncome() {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: `amount=${amount}&description=${description}`
             })
-            .then(response => response.json())
-            .then(data => {
-                const incomeSum = data.income_sum;
-                // Update the currentIncome variable
-                document.getElementById("incomeValue").innerText = `€${incomeSum.toFixed(2)}`;
-
-            })
+            .then(response => response.text())
             .then(data => console.log(data))
             .catch(error => console.error(error));
         } catch (error) {
@@ -137,15 +131,9 @@ function submitExpense() {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `amount=${amount}&category=${category}&description=${description}`
               })
-                .then(response => response.json())
-                .then(data => {
-                    const expenseSum = data.expense_sum;
-                // Update the currentIncome variable
-                    document.getElementById("expenseValue").innerText = `€${expenseSum.toFixed(2)}`;
-
-            })
-                .then(data => console.log(data))
-                .catch(error => console.error(error));
+              .then(response => response.text())
+              .then(data => console.log(data))
+              .catch(error => console.error(error));
         } catch (error) {
             console.error("Error submitting expense:", error);
         }

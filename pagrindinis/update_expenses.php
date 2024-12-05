@@ -23,12 +23,11 @@ $category = $_POST['category'];
 $description = $_POST['description'];
 $username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
-$expense_sum = 0;
 
 
 
 // Define the update expenses function
-function update_expenses($conn, $user_id, $amount, $category, $description, $expense_sum) {
+function update_expenses($conn, $user_id, $amount, $category, $description) {
     
     //log_message($user_id);
 
@@ -46,23 +45,8 @@ function update_expenses($conn, $user_id, $amount, $category, $description, $exp
 
     //////////////////////////////////
 
-    $stmt = $conn->prepare('SELECT SUM(amount) FROM expenses  WHERE user_id = ?');
-    $stmt->bind_param('i', $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $expense_sum += (double) $row['SUM(amount)'];
-        }
-    }
-
-    header('Content-Type: application/json');
-    ob_start();
-    echo json_encode(array('expense_sum' => $expense_sum));
-    ob_end_flush();
 
 }
-update_expenses($conn, $user_id, $amount, $category, $description, $expense_sum);
+update_expenses($conn, $user_id, $amount, $category, $description);
 
 ?>
