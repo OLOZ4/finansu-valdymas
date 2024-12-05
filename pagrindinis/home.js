@@ -83,12 +83,19 @@ function submitIncome() {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: `amount=${amount}&description=${description}`
             })
-            .then(response => response.text())
+            .then(response => response.json())
+            .then(data => {
+                const incomeSum = data.income_sum;
+                // Update the currentIncome variable
+                document.getElementById("incomeValue").innerText = `€${incomeSum.toFixed(2)}`;
+
+            })
             .then(data => console.log(data))
             .catch(error => console.error(error));
         } catch (error) {
             console.error("Error submitting expense:", error);
         }
+
         //***************************************** */
         // income i tranzakcijas
         const transactionList = document.getElementById('transactionList');
@@ -111,6 +118,7 @@ function submitIncome() {
     } else {
         alert("Please enter a valid amount and description.");
     }
+    update_all();
 }
 
 // cia su expense modalu
@@ -124,14 +132,20 @@ function submitExpense() {
 
 
         try {
-            fetch("update_expenses.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            fetch('update_expenses.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `amount=${amount}&category=${category}&description=${description}`
+              })
+                .then(response => response.json())
+                .then(data => {
+                    const expenseSum = data.expense_sum;
+                // Update the currentIncome variable
+                    document.getElementById("expenseValue").innerText = `€${expenseSum.toFixed(2)}`;
+
             })
-            .then(response => response.text())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
         } catch (error) {
             console.error("Error submitting expense:", error);
         }
@@ -149,12 +163,13 @@ function submitExpense() {
         transactionList.appendChild(li);
 
         // updatas
-        let currentExpense = parseFloat(document.getElementById("expenseValue").innerText.replace('$', ''));
-        currentExpense += amount;
-        document.getElementById("expenseValue").innerText = '€' + currentExpense.toFixed(2);
+       // let currentExpense = parseFloat(document.getElementById("expenseValue").innerText.replace('$', ''));
+        //currentExpense += amount;
+        //document.getElementById("expenseValue").innerText = '€' + currentExpense.toFixed(2);
 
         // dar vienas
         updateBalance();
+        update_all();
 
         document.getElementById('expenseAmount').value = '';
         document.getElementById('expenseDesc').value = '';
@@ -165,6 +180,35 @@ function submitExpense() {
     } else {
         alert("Please enter a valid amount, description, and category.");
     }
+}
+
+function update_all(){
+    try {
+        fetch('update_all.php')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            const incomeSum = data.income_sum;
+            const expenseSum = data.expense_sum;
+            document.getElementById("incomeValue").innerText = `€${incomeSum.toFixed(2)}`;
+            document.getElementById("expenseValue").innerText = `€${expenseSum.toFixed(2)}`;
+            let balance = incomeSum - expenseSum;
+            document.getElementById("balanceValue").innerText = '€' + balance.toFixed(2);            
+            //let balance = incomeSum - 0;
+            //document.getElementById("balanceValue").innerText = '€' + balance.toFixed(2);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      } catch (error) {
+        console.error('Error submitting expense:', error);
+      }
+      
+      updateBalance();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -220,3 +264,5 @@ document.getElementById('addGoalBtn').addEventListener('click', function() {
         alert("Please enter a goal.");
     }
 });
+
+update_all();

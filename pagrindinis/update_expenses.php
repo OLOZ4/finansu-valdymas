@@ -23,13 +23,14 @@ $category = $_POST['category'];
 $description = $_POST['description'];
 $username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
+$expense_sum = 0;
 
 
 
 // Define the update expenses function
-function update_expenses($conn, $user_id, $amount, $category, $description) {
+function update_expenses($conn, $user_id, $amount, $category, $description, $expense_sum) {
     
-    log_message($user_id);
+    //log_message($user_id);
 
     // Prepare query
     $stmt = $conn->prepare('INSERT INTO expenses (user_id, amount, category, description) VALUES (?, ?, ?, ?)');
@@ -43,7 +44,25 @@ function update_expenses($conn, $user_id, $amount, $category, $description) {
         die('Query failed: ' . $stmt->error);
     }
 
+    //////////////////////////////////
+
+    $stmt = $conn->prepare('SELECT SUM(amount) FROM expenses  WHERE user_id = ?');
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $expense_sum += (double) $row['SUM(amount)'];
+        }
+    }
+
+    header('Content-Type: application/json');
+    ob_start();
+    echo json_encode(array('expense_sum' => $expense_sum));
+    ob_end_flush();
+
 }
-update_expenses($conn, $user_id, $amount, $category, $description);
+update_expenses($conn, $user_id, $amount, $category, $description, $expense_sum);
 
 ?>
