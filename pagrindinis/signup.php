@@ -100,9 +100,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
         <div class="signup-box">
             <h1>SIGN UP</h1>
 
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"></form>
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
-            <form id="signup-form" action="home.php" method="GET">
+            <form id="signup-form" action="login.php" method="GET">
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required placeholder="Enter your username">
