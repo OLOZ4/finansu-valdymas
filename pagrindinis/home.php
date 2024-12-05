@@ -15,7 +15,7 @@ session_start(); // Start the session
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAGRINDINIS</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
 </head>
@@ -141,6 +141,6 @@ session_start(); // Start the session
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
-    <script src="main.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
