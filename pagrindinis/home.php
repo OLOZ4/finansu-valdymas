@@ -25,7 +25,7 @@ session_start(); // Start the session
         <!-- virsutinis baras -->
         <div class="top-bar">
             <div class="button-container">
-                <a href="main.html">
+                <a href="home.php">
                 <img src = "logo.png" alt="logo" class="logo">
                 </a>
                 <a href="about.html">
