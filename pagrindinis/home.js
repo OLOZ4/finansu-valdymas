@@ -78,7 +78,7 @@ function submitIncome() {
 
         //***************************************** */ BACKEND
         try {
-            fetch("update_income.php", {
+            fetch("write_income.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: `amount=${amount}&description=${description}`
@@ -98,9 +98,9 @@ function submitIncome() {
         transactionList.appendChild(li);
 
         // upatatinam incoma
-        let currentIncome = parseFloat(document.getElementById("incomeValue").innerText.replace('$', ''));
-        currentIncome += amount;
-        document.getElementById("incomeValue").innerText = '€' + currentIncome.toFixed(2);
+        //let currentIncome = parseFloat(document.getElementById("incomeValue").innerText.replace('$', ''));
+        //currentIncome += amount;
+        //document.getElementById("incomeValue").innerText = '€' + currentIncome.toFixed(2);
 
         // updatinam balansa
         updateBalance();
@@ -124,9 +124,9 @@ function submitExpense() {
     console.log(category); // for testing
     if (!isNaN(amount) && description.trim() !== "") {
 
-
+        //***************************************** */ BACKEND
         try {
-            fetch('update_expenses.php', {
+            fetch('write_expenses.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `amount=${amount}&category=${category}&description=${description}`
@@ -137,6 +137,7 @@ function submitExpense() {
         } catch (error) {
             console.error("Error submitting expense:", error);
         }
+        //***************************************** */ 
 
         if (expenseCategories[category]) {
             expenseCategories[category] += amount;
