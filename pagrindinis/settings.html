@@ -390,7 +390,13 @@
                 <div class="info-label">Username</div>
                 <div class="info-instructions">Pick a unique name others will see.</div>
             </div>
-            <button class="change-btn">Change</button>
+            <button class="change-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Change</button>
+            <div class="form-popup" id="emptyForm">
+                <div class="form-container">
+                <!-- Close button -->
+                <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
+                </div>
+            </div>
         </div>
 
         <div class="info-section">
@@ -398,7 +404,13 @@
                 <div class="info-label">Email Address</div>
                 <div class="info-instructions">Use a valid email for updates.</div>
             </div>
-            <button class="change-btn">Change</button>
+            <button class="change-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Change</button>
+            <div class="form-popup" id="emptyForm">
+                <div class="form-container">
+                    <!-- Close button -->
+                    <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
+                </div>
+            </div>
         </div>
 
         <div class="info-section">
@@ -406,7 +418,13 @@
                 <div class="info-label">Password</div>
                 <div class="info-instructions">Use 8+ characters for security.</div>
             </div>
-            <button class="change-btn">Change</button>
+            <button class="change-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Change</button>
+            <div class="form-popup" id="emptyForm">
+                <div class="form-container">
+                    <!-- Close button -->
+                    <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
+                </div>
+            </div>
         </div>
 
         <div class="info-section">
@@ -414,7 +432,13 @@
                 <div class="info-label">Delete your account</div>
                 <div class="info-instructions">Confirm deletion carefully.</div>
             </div>
-            <button class="delete-btn">Delete</button>
+            <button class="delete-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Delete</button>
+            <div class="form-popup" id="emptyForm">
+                <div class="form-container">
+                    <!-- Close button -->
+                    <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
+                </div>
+            </div>
         </div>
 
         <!-- Back to Main mygtukas -->
