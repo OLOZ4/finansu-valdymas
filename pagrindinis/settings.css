@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.info-section {
+    margin: 20px 0;
+}
+
+.change-btn, .delete-btn {
+    background-color: #1f8cf8;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.change-btn:hover, .delete-btn:hover {
+    background-color: #1557bf;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.form-popup.visible {
+    display: block;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-btn {
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.close-btn:hover {
+    background-color: #bf1515;
+}
+
+.submit-btn {
+    background-color: #1f8cf8;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #1557bf;
+}

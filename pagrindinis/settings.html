@@ -6,6 +6,7 @@
     <title>Profile Settings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
+    <link rel="stylesheet" href="settings.css">
     <style>
         body {
             background: linear-gradient(to top right, #0f2027, #203a43, #2c5364);
@@ -384,65 +385,86 @@
         </div>
 
 
-        <!-- User informacija -->
-        <div class="info-section">
-            <div class="info-text">
-                <div class="info-label">Username</div>
-                <div class="info-instructions">Pick a unique name others will see.</div>
-            </div>
-            <button class="change-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Change</button>
-            <div class="form-popup" id="emptyForm">
-                <div class="form-container">
+    <!-- User informacija -->
+    <div class="info-section">
+        <div class="info-text">
+            <div class="info-label">Username</div>
+            <div class="info-instructions">Pick a unique name others will see.</div>
+        </div>
+        <button class="change-btn" onclick="document.getElementById('usernameForm').classList.add('visible')">Change</button>
+        <div class="form-popup" id="usernameForm">
+            <div class="form-container">
                 <!-- Close button -->
-                <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
-                </div>
+                <button class="close-btn" onclick="document.getElementById('usernameForm').classList.remove('visible')">X</button>
+                <form action="change_username.php" method="post">
+                    <label for="new-username">New Username:</label>
+                    <input type="text" id="new-username" name="new-username" required>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div class="info-section">
-            <div class="info-text">
-                <div class="info-label">Email Address</div>
-                <div class="info-instructions">Use a valid email for updates.</div>
-            </div>
-            <button class="change-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Change</button>
-            <div class="form-popup" id="emptyForm">
-                <div class="form-container">
-                    <!-- Close button -->
-                    <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
-                </div>
+    <div class="info-section">
+        <div class="info-text">
+            <div class="info-label">Email Address</div>
+            <div class="info-instructions">Use a valid email for updates.</div>
+        </div>
+        <button class="change-btn" onclick="document.getElementById('emailForm').classList.add('visible')">Change</button>
+        <div class="form-popup" id="emailForm">
+            <div class="form-container">
+                <!-- Close button -->
+                <button class="close-btn" onclick="document.getElementById('emailForm').classList.remove('visible')">X</button>
+                <form action="change_email.php" method="post">
+                    <label for="new-email">New Email:</label>
+                    <input type="email" id="new-email" name="new-email" required>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div class="info-section">
-            <div class="info-text">
-                <div class="info-label">Password</div>
-                <div class="info-instructions">Use 8+ characters for security.</div>
-            </div>
-            <button class="change-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Change</button>
-            <div class="form-popup" id="emptyForm">
-                <div class="form-container">
-                    <!-- Close button -->
-                    <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
-                </div>
+    <div class="info-section">
+        <div class="info-text">
+            <div class="info-label">Password</div>
+            <div class="info-instructions">Use 8+ characters for security.</div>
+        </div>
+        <button class="change-btn" onclick="document.getElementById('passwordForm').classList.add('visible')">Change</button>
+        <div class="form-popup" id="passwordForm">
+            <div class="form-container">
+                <!-- Close button -->
+                <button class="close-btn" onclick="document.getElementById('passwordForm').classList.remove('visible')">X</button>
+                <form action="change_password.php" method="post">
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password" name="new-password" required>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div class="info-section">
-            <div class="info-text">
-                <div class="info-label">Delete your account</div>
-                <div class="info-instructions">Confirm deletion carefully.</div>
-            </div>
-            <button class="delete-btn" onclick="document.getElementById('emptyForm').classList.add('visible')">Delete</button>
-            <div class="form-popup" id="emptyForm">
-                <div class="form-container">
-                    <!-- Close button -->
-                    <button class="close-btn" onclick="document.getElementById('emptyForm').classList.remove('visible')">X</button>
-                </div>
+    <div class="info-section">
+        <div class="info-text">
+            <div class="info-label">Delete your account</div>
+            <div class="info-instructions">Confirm deletion carefully.</div>
+        </div>
+        <button class="delete-btn" onclick="document.getElementById('deleteForm').classList.add('visible')">Delete</button>
+        <div class="form-popup" id="deleteForm">
+            <div class="form-container">
+                <!-- Close button -->
+                <button class="close-btn" onclick="document.getElementById('deleteForm').classList.remove('visible')">X</button>
+                <form action="delete_account.php" method="post">
+                    <label for="confirm-delete">Type "DELETE" to confirm:</label>
+                    <input type="text" id="confirm-delete" name="confirm-delete" required>
+                    <button type="submit" class="submit-btn">Delete</button>
+                </form>
             </div>
         </div>
+    </div>
 
         <!-- Back to Main mygtukas -->
         <button class="back-btn" onclick="location.href='home.php'">Back to Main</button>
     </div>
+    <script src="settings.js"></script>
 </body>
 </html>
