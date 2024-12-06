@@ -123,6 +123,13 @@
             justify-content: center;
         }
 
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit:cover;
+            border-radius: 50%;
+        }
+
         /* textas po profiliu */
                 /* Style for the main button to open the pop-up */
         .change-profile-button {
@@ -142,17 +149,7 @@
             background-color: #1557bf;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        /*
-        background-color: rgba(0, 0, 0, 0.1);
-        padding: 25px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-        width: 100%;
-        max-width: 350px;
-        backdrop-filter: blur(10px);
-        text-align: center;
-        margin: 0 auto;*/
-        /* Pop-up container */
+
         .form-popup {
             display: none;
             position: fixed;
@@ -359,7 +356,7 @@
     <div class="container" style="margin-top: 60px;">
         <!-- Profile Picture -->
         <div class="profile-pic">
-            <p>Logo</p>
+            <img src="profile pictures\test.jpg"/>
         </div>
         <div>
             <button class="change-profile-button" onclick="document.getElementById('myForm').classList.add('visible')">Change profile picture</button>
