@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute();
 
             // Delete related records in other tables if necessary
-            // Example: $stmt = $conn->prepare("DELETE FROM expenses WHERE user_id = ?");
-            // $stmt->bind_param("i", $user_id);
-            // $stmt->execute();
+            $stmt = $conn->prepare("DELETE FROM expenses WHERE user_id = ?");
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
 
             // Delete the user
             $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
