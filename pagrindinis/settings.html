@@ -123,13 +123,132 @@
         }
 
         /* textas po profiliu */
-        .change-profile-text {
-            color: #1f8cf8;
+                /* Style for the main button to open the pop-up */
+        .change-profile-button {
+            color: #ffffff;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             text-align: center;
             margin-bottom: 20px;
+            background-color: #1f8cf8;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
         }
+
+        .change-profile-button:hover {
+            background-color: #1557bf;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        /*
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        width: 100%;
+        max-width: 350px;
+        backdrop-filter: blur(10px);
+        text-align: center;
+        margin: 0 auto;*/
+        /* Pop-up container */
+        .form-popup {
+            display: none;
+            position: fixed;
+            overflow: hidden;
+            top: 50%;
+            left: 50%;
+            z-index: 1000; /*kad butu virsutiniausias*/
+            width: 400px;
+            height: 500px;
+            transform: translate(-50%, -50%);
+            border: none;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 1px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Show the pop-up when the 'visible' class is added */
+        .form-popup.visible {
+            display: flex;
+        }
+
+        /* Pop-up content */
+        .form-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius:10px;
+            background: linear-gradient(to top right, #0f2027, #203a43, #2c5364);
+        }
+
+        /* Close button at the top-right */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Drag-and-drop area */
+        .drag-drop-area {
+            width: 80%;
+            height: 60%;
+            border: 2px dashed #ffffff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Select from Files button */
+        .file-select-btn {
+            background-color: #1f8cf8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        .file-select-btn:hover {
+            background-color: #1557bf;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hide the actual file input */
+        input[type="file"] {
+            display: none;
+        }
+
 
         /* Info */
         .info-section {
@@ -241,7 +360,29 @@
         <div class="profile-pic">
             <p>Logo</p>
         </div>
-        <div class="change-profile-text">Change profile picture</div>
+        <div>
+            <button class="change-profile-button" onclick="document.getElementById('myForm').classList.add('visible')">Change profile picture</button>
+        </div>
+        
+        <div class="form-popup" id="myForm">
+            <div class="form-container">
+                <!-- Close button -->
+                <button class="close-btn" onclick="document.getElementById('myForm').classList.remove('visible')">X</button>
+
+                <!-- Drag-and-drop area -->
+                <label class="drag-drop-area">
+                    Drag & Drop an image
+                    <input type="file" accept="image/*" hidden>
+                </label>
+
+                <!-- Select from Files button -->
+                <label class="file-select-btn">
+                    Select from Files
+                    <input type="file" accept="image/*" hidden>
+                </label>
+            </div>
+        </div>
+
 
         <!-- User informacija -->
         <div class="info-section">
@@ -270,7 +411,7 @@
 
         <div class="info-section">
             <div class="info-text">
-                <div class="info-label">Deletion</div>
+                <div class="info-label">Delete your account</div>
                 <div class="info-instructions">Confirm deletion carefully.</div>
             </div>
             <button class="delete-btn">Delete</button>
