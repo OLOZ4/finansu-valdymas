@@ -12,13 +12,12 @@ google.charts.setOnLoadCallback(updateExpenseChart);
 
 
 function updateExpenseChart() {
-
     let data = new google.visualization.DataTable();
     data.addColumn('string', 'Category');
     data.addColumn('number', 'Amount');
     
     Object.keys(expenseCategories).forEach(function(category) {
-        data.addRow([category, expenseCategories[category]]);
+        data.addRow([category,parseFloat(expenseCategories[category])]);
     });
 
     // charto nustatymai
@@ -138,13 +137,13 @@ function submitExpense() {
             console.error("Error submitting expense:", error);
         }
         //***************************************** */ 
-
+        /*
         if (expenseCategories[category]) {
             expenseCategories[category] += amount;
         } else {
             expenseCategories[category] = amount; 
         }
-
+        */
         // nauja tranzakcija
         const transactionList = document.getElementById('transactionList');
         const li = document.createElement('li');
@@ -159,7 +158,7 @@ function submitExpense() {
         // dar vienas
         updateBalance();
         update_all();
-
+        update_category(expenseCategories);
         document.getElementById('expenseAmount').value = '';
         document.getElementById('expenseDesc').value = '';
         document.getElementById('expenseModal').style.display = 'none';
@@ -169,6 +168,30 @@ function submitExpense() {
     } else {
         alert("Please enter a valid amount, description, and category.");
     }
+}
+
+function update_category(array) {
+    for (var category in array) {
+        var value = array[category];
+        //console.log(category + ': ' + value);
+        $.ajax({
+            type: 'POST',
+            url: 'update_category.php',
+            data: { category: category, value: value },
+            dataType: 'json',
+            async: false,
+            success: function(data) {
+                //console.log('Received response:', data);
+                var category = data.category;
+                var value_new = data.value;
+                array[category] = value_new;
+                //console.log(category + ': ' + array[category]);
+                
+            }
+        });
+        console.log(category + ': ' + array[category]);
+    }
+    updateExpenseChart();
 }
 
 function update_all(){
@@ -186,8 +209,7 @@ function update_all(){
             document.getElementById("incomeValue").innerText = `€${incomeSum.toFixed(2)}`;
             document.getElementById("expenseValue").innerText = `€${expenseSum.toFixed(2)}`;
             let balance = incomeSum - expenseSum;
-            document.getElementById("balanceValue").innerText = '€' + balance.toFixed(2);            
-            //let balance = incomeSum - 0;
+            document.getElementById("balanceValue").innerText = '€' + balance.toFixed(2);
             //document.getElementById("balanceValue").innerText = '€' + balance.toFixed(2);
           })
           .catch(error => {
@@ -254,4 +276,6 @@ document.getElementById('addGoalBtn').addEventListener('click', function() {
     }
 });
 
+
 update_all();
+update_category(expenseCategories);
