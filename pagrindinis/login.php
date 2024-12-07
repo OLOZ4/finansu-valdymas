@@ -1,7 +1,7 @@
 <?php
   // Include the config file
   require_once('config.php');
-
+  header('Cache-Control: no-cache, must-revalidate');
   // Handle the login form submission
   if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Patikrina ar html kode yra method=POST 
     session_start(); // startuojama sesija
@@ -14,8 +14,11 @@
     else $kintamasis = 'username'; // Jei nera "@" kintamasis "kintamasis" yra prilyginamas username
 
     // Patikrina ar egzistuoja toks username ar email  
-    $result = $conn->query("SELECT * FROM users WHERE $kintamasis='$user'"); // Suformuojama uzklausa i db ir kintamajam "result" prilyginamas uzklausos atsakymas 
-
+    // Suformuojama uzklausa i db ir kintamajam "result" prilyginamas uzklausos atsakymas 
+    $stmt = $conn->prepare("SELECT * FROM users WHERE $kintamasis = ?");
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+    $result = $stmt->get_result();
     if ($result->num_rows > 0) // Jeigu nors yra rastas nors vienas atitikmuo tada:
     { 
       while ($row = $result->fetch_assoc()) { // Kintamajam "row" prilygina eilutes masyva, kurios username ar email buvo ivestas (mysqli_fetch_assoc — Fetch the next row of a result set as an associative array)
@@ -39,13 +42,18 @@
         }
         
         $_SESSION['user_id'] = $user_id; // Setting user_id as session variable
+        $_SESSION['logged_in'] = true;
 
         //-------------------------------------------------------------------//
-
+        
         header('Location: home.php'); // Jei sutampa, tai perforwardina zmogu i puslapi dashboard.php 
         if ($kintamasis == 'email')
         {
-          $result = $conn->query("SELECT username FROM users WHERE $kintamasis='$user'"); // Suformuojama uzklausa i db ir kintamajam "result" prilyginamas uzklausos atsakymas 
+          // Suformuojama uzklausa i db ir kintamajam "result" prilyginamas uzklausos atsakymas 
+          $stmt = $conn->prepare("SELECT username FROM users WHERE kintamasis = ?");
+          $stmt->bind_param("s", $user);
+          $stmt->execute();
+          $result = $stmt->get_result();
           if ($result->num_rows > 0) 
           {
             while ($row = $result->fetch_assoc()) 
@@ -76,7 +84,9 @@
 <body>
     <div class="overlay">
         <div class="login-container">
-            <img src="logo.png" alt="Logo" class="logo">
+            <a href="index.php">
+            <img src = "logo.png" alt="logo" class="logo">
+            </a>
             <div class="login-box">
                 <h2>LOGIN</h2>
                 <form id="loginForm" action="login.php" method="post">

@@ -1,6 +1,6 @@
 <?php
 require_once("config.php"); // Sitame faile yra saugomi prisijungimo prie db infomacija
-
+header('Cache-Control: no-cache, must-revalidate');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas post metodas
 
     $username = $_POST['username']; // Vartojo ivestas username prilyginamas kintamajam 'username'
@@ -13,14 +13,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
         {
             $password_hash = password_hash($password,PASSWORD_BCRYPT); // Uzheshuojamas ivestas slaptazodis naudojant BCRYPT ir prilyginamas 'password_hash' kintamajam
            
-            $result = $conn->query("SELECT * FROM users WHERE username='$username'"); // Patikrinama ar yra jau egsistuojantis username
+            // Patikrinama ar yra jau egsistuojantis username
+            ///*
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            //*/
 
-            $result1 = $conn->query("SELECT * FROM users WHERE email='$email'"); // Patikrinama ar yra jau egsistuojantis email
+            // Patikrinama ar yra jau egsistuojantis email
+            ///*
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result1 = $stmt->get_result();
+            //*/
 
             if($result->num_rows == 0 AND $result1->num_rows == 0) // Jei toks username ir email NEegzistuoja tada:
                 {
-                    $result = $conn->query("INSERT INTO users (username,email,password) VALUES ('$username', '$email', '$password_hash')"); // I db username email ir passwords irasyti vartotojo ivestus duomenis 
-                    if ($result)
+                    // I db username email ir passwords irasyti vartotojo ivestus duomenis 
+                    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+                    $stmt->bind_param("sss", $username, $email, $password_hash);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    
+                    if ($result !== NULL)
                     {
                         
 
@@ -94,7 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
 <body>
     <div class="overlay">
         
-        <img src="logo.png" alt="Logo" class="logo">
+            <a href="index.php">
+            <img src = "logo.png" alt="logo" class="logo">
+            </a>
         
         
         <div class="signup-box">

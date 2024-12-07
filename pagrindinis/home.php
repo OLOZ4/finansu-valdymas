@@ -1,10 +1,10 @@
 <?php
-
-
-
-   
+header('Cache-Control: no-cache, must-revalidate');
 session_start(); // Start the session
-
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: /index.php');
+    exit;
+}
 // Access the session variables
 //echo $_SESSION['username'];
 ?>
@@ -29,12 +29,12 @@ session_start(); // Start the session
                 <a href="home.php">
                 <img src = "logo.png" alt="logo" class="logo">
                 </a>
-                <a href="about.html">
+                <a href="about.php">
                 <button>About</button>
                 </a>
             </div>
             <div class="button-container right-buttons">
-                <a href="settings.html">
+                <a href="settings.php">
                 <button class="btn"><i class="fa fa-cog"></i></button>
                 </a>
                 <button class="btn"><i class="fa fa-bell"></i></button>

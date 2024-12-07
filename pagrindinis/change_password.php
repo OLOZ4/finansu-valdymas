@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Password updated successfully!";
         echo '<script>
                 setTimeout(function() {
-                    window.location.href = "settings.html";
+                    window.location.href = "settings.php";
                 }, 2000);
               </script>';
     } else {

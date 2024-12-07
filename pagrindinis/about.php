@@ -1,3 +1,12 @@
+<?php
+header('Cache-Control: no-cache, must-revalidate');
+session_start(); // Start the session
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: /index.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +25,13 @@
             </a>
         </div>
         <div class="navbar-right">
-            <button class="icon-btn" title="Settings" onclick="location.href='settings.html'">
+            <button class="icon-btn" title="Settings" onclick="location.href='settings.php'">
                 <i class="fa-solid fa-gear"></i>
             </button>
             <button class="icon-btn" title="Notifications" onclick="location.href='notifications.html'">
                 <i class="fa-solid fa-bell"></i>
             </button>
-            <a href="login.php">
+            <a href="destroy_session.php">
             <button class="icon-btn logout-icon" title="Logout" onclick="location.href='logout.html'">
                 <i class="fa-solid fa-right-from-bracket"></i>
             </button>

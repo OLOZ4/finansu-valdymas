@@ -6,7 +6,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
 {
     $email=$_POST['email'];//gaunamas ivestas email
 
-    $result = $conn->query("SELECT * FROM users WHERE email='$email'");//sujungiamas ivestas email su egzistuojanciu duomenu bazeje
+    //sujungiamas ivestas email su egzistuojanciu duomenu bazeje
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
     if ($result->num_rows > 0)//jei yra rysys (egzistuoja toks email), yra eilute su vartotoju
     {
 
@@ -17,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
         if($new_password === $confirm_password)//patikriname ar sutampa
             {
             $password_hash = password_hash($new_password, PASSWORD_BCRYPT);//uzhashuojam
-            $conn->query("UPDATE users SET password='$password_hash' WHERE email='$email'");
+            $stmt = $conn->prepare("UPDATE users SET password=? WHERE email=?");
+            $stmt->bind_param("ss", $password_hash, $email);
+            $stmt->execute();
             echo 'Password reset successful! Redirecting in 3 seconds...';//pranesam kad pavyko, redirectinam po keliu sekundziu
             
             // Redirect to a desired page after 3 seconds
