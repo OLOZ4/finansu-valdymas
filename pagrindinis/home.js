@@ -184,7 +184,7 @@ function update_category(array) {
                 //console.log('Received response:', data);
                 var category = data.category;
                 var value_new = data.value;
-                array[category] = value_new;
+                array[category] = value_new.toString().replace(/\,/g, '');
                 //console.log(category + ': ' + array[category]);
                 
             }
