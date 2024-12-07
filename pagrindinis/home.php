@@ -45,7 +45,7 @@ session_start(); // Start the session
                 </a>
             </form>
                 <div class="navbar-profile">
-                    <img src="profile-pic.jpg" alt="Profile Picture" class="profile-img">
+                    <img src="/profile%20pictures/test.jpg" alt="Profile Picture" class="profile-img">
                 </div>
             </div>
         </div>
