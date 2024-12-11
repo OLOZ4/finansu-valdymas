@@ -1,6 +1,7 @@
 # Ignore MySQL files
 mysql/
 mysql-logs/
+proxy/
 
 # Ignore any files or folders within the ignored directories
 /**/*.sql

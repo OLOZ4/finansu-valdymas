@@ -1,7 +1,9 @@
 services:
     web: # nginx web serveris
         image: nginx:latest
+        restart: unless-stopped
         ports:
+            #- "82:80"  # replace default ports if using proxy
             - "80:80"
         volumes:
             - ./pagrindinis:/var/www/html
@@ -13,13 +15,26 @@ services:
             - php-fpm
             - mysql
 
+    #reverse-proxy: # reverse proxy
+        #image: 'jc21/nginx-proxy-manager:latest'
+        #restart: unless-stopped
+        #ports:
+        #- '80:80'
+        #- '81:81'
+        #- '443:443'
+        #volumes:
+        #- ./proxy/data:/data
+        #- ./proxy/letsencrypt:/etc/letsencrypt
+
     php-fpm: # php priedas nginx'ui
         build: docker/php-fpm
+        restart: unless-stopped
         volumes:
             - ./pagrindinis:/var/www/html
 
     mysql: # duomabze
         image: mysql:latest
+        restart: unless-stopped
         command: --init-file /data/application/init.sql
         env_file:
             - mysql.env
@@ -32,6 +47,7 @@ services:
 
     adminer: # duombazes narsymo irankis
         image: adminer:latest
+        restart: unless-stopped
         ports:
             - "8080:8080"
         links:
