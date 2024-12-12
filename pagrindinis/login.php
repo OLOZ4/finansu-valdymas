@@ -2,6 +2,7 @@
   // Include the config file
   require_once('config.php');
   header('Cache-Control: no-cache, must-revalidate');
+  $error_message = '';
   // Handle the login form submission
   if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Patikrina ar html kode yra method=POST 
     session_start(); // startuojama sesija
@@ -67,9 +68,9 @@
         
       }
 
-      else echo 'Invalid username or password'; // Jei slaptazodis su hashu nesutampa, tada ismetamas error'as
+      else $error_message= 'Invalid username or password'; // Jei slaptazodis su hashu nesutampa, tada ismetamas error'as
     }
-    else echo 'Invalid username or password'; // Jei nerastas db vartotojo ivestas username ar email
+    else $error_message='Invalid username or password'; // Jei nerastas db vartotojo ivestas username ar email
 }
 ?>
 
@@ -85,6 +86,7 @@
     <div class="overlay">
       <?php if(!empty($error_message)): ?>
         <div class="alert">
+            <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
           <?php echo $error_message; ?>
         </div>
         <?php endif; ?>
