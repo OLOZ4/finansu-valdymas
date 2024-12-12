@@ -26,19 +26,20 @@ body {
     top: 20px; 
     left: 50%; 
     transform: translateX(-50%); 
-    background-color: #27ae60; 
+    background-color: red; 
     color: white;
     padding: 15px 20px; 
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-    font-size: 16px; 
+    font-size: 11px; 
     font-weight: bold;
-    z-index: 1000; 
+    z-index: auto; 
     display: flex; 
     align-items: center; 
     justify-content: space-between; 
     width: 90%; 
     max-width: 400px; 
+    max-height: 10px;
 }
 .alert .close-btn {
     position: absolute;
@@ -52,7 +53,7 @@ body {
     border: none;
 }
 .alert .close-btn:hover {
-    color: #1abc9c;
+    color: red;
 } 
 
 .login-container {
