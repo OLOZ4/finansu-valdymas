@@ -70,7 +70,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                 <div class="box expenses">
                     <h2>Expenses</h2>
                     <p id="expenseValue">€0</p>
-                    <button class="period-btn" id="selectPeriod">Select Period</button>
+                     <!--<button class="period-btn" id="selectPeriod">Select Period</button>-->
                 </div>
             </div>
 
