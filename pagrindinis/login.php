@@ -83,6 +83,11 @@
 </head>
 <body>
     <div class="overlay">
+      <?php if(!empty($error_message)): ?>
+        <div class="alert">
+          <?php echo $error_message; ?>
+        </div>
+        <?php endif; ?>
         <div class="login-container">
             <a href="index.php">
             <img src = "logo.png" alt="logo" class="logo">
