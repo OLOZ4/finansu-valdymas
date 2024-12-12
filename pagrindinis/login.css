@@ -22,19 +22,38 @@ body {
     margin-right: 20px;
 }
 .alert {
-    width: 100%;
-    max-width: 350px;
-    background-color: rgba(46, 204, 113, 0.9);
+    position: fixed; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: #27ae60; 
     color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    margin: 10px auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
+    padding: 15px 20px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    font-size: 16px; 
     font-weight: bold;
-    position: relative;
+    z-index: 1000; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 90%; 
+    max-width: 400px; 
 }
+.alert .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+.alert .close-btn:hover {
+    color: #1abc9c;
+} 
 
 .login-container {
     display: flex;
