@@ -1,6 +1,8 @@
 <?php
 require_once("config.php"); // Sitame faile yra saugomi prisijungimo prie db infomacija
 header('Cache-Control: no-cache, must-revalidate');
+$error_message = "";
+$success_message = ""; 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas post metodas
 
     $username = $_POST['username']; // Vartojo ivestas username prilyginamas kintamajam 'username'
@@ -42,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
                         
 
 
-                        echo 'Account creation was successful!'; // Jei  pavyko insertinti duomenis i db pranesti apie tai vartotojui
+                        $success_message= 'Account creation was successful!'; // Jei  pavyko insertinti duomenis i db pranesti apie tai vartotojui
                         // Redirect to a desired page after 3 seconds
                         //html dalis, kuria galbut galima butu pagrazinti. dariau su chatgpt tai nzn ar good
                         echo '
@@ -94,9 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
                     } 
                         else echo 'Error: ' . $conn->error_get_last; // Kitaip ismesti klaida
                 }
-            else echo '<h1>Username or E-mail already exists</h1></br></br>'; // Jei email ar username sutampa, apie tai pranesti vartotojui
+            else $error_message= '<h1>Username or E-mail already exists</h1></br></br>'; // Jei email ar username sutampa, apie tai pranesti vartotojui
         }
-        else echo '<h1>Passwords do not match!</h1>'; // Pranesti kad slaptazodziai nesutampa
+        else $error_message= '<h1>Passwords do not match!</h1>'; // Pranesti kad slaptazodziai nesutampa
 }
 ?>
 
@@ -110,6 +112,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Jeigu html kode yra naudojamas po
 </head>
 <body>
     <div class="overlay">
+         <?php if (!empty($error_message) || !empty($success_message)): ?>
+            <div class="alert <?php echo !empty($error_message) ? 'error' : 'success'; ?>">
+            <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+        <?php echo !empty($error_message) ? $error_message : $success_message; ?>
+            </div>
+        <?php endif; ?>
         
             <a href="index.php">
             <img src = "logo.png" alt="logo" class="logo">
