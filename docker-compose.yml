@@ -22,6 +22,8 @@ services:
         #- '80:80'
         #- '81:81'
         #- '443:443'
+        #links:
+        #- web
         #volumes:
         #- ./proxy/data:/data
         #- ./proxy/letsencrypt:/etc/letsencrypt
