@@ -51,7 +51,7 @@
         if ($kintamasis == 'email')
         {
           // Suformuojama uzklausa i db ir kintamajam "result" prilyginamas uzklausos atsakymas 
-          $stmt = $conn->prepare("SELECT username FROM users WHERE kintamasis = ?");
+          $stmt = $conn->prepare("SELECT username FROM users WHERE $kintamasis = ?");
           $stmt->bind_param("s", $user);
           $stmt->execute();
           $result = $stmt->get_result();
