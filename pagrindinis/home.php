@@ -7,6 +7,19 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 // Access the session variables
 //echo $_SESSION['username'];
+$profileImage = 'profile pictures/test.jpg'; // Default image
+
+// Possible image extensions
+$imageExtensions = ['jpg', 'png', 'gif'];
+
+// Check if a custom image exists for the user in any of the supported formats
+foreach ($imageExtensions as $ext) {
+    $filePath = "profile pictures/{$_SESSION['user_id']}.$ext";
+    if (file_exists($filePath)) {
+        $profileImage = $filePath;
+        break; // Exit the loop once we find a valid image
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +58,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                 </a>
             </form>
                 <div class="navbar-profile">
-                    <img src="/profile%20pictures/test.jpg" alt="Profile Picture" class="profile-img">
+                    <img src="<?php echo htmlspecialchars($profileImage); ?>" alt="Profile Picture" class="profile-img">
                 </div>
             </div>
         </div>
@@ -143,5 +156,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
     <script src="home.js"></script>
+    <script src="getProfileImage.js"</script>
 </body>
 </html>

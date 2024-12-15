@@ -5,6 +5,19 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: /index.php');
     exit;
 }
+$profileImage = 'profile pictures/test.jpg'; // Default image
+
+// Possible image extensions
+$imageExtensions = ['jpg', 'png', 'gif'];
+
+// Check if a custom image exists for the user in any of the supported formats
+foreach ($imageExtensions as $ext) {
+    $filePath = "profile pictures/{$_SESSION['user_id']}.$ext";
+    if (file_exists($filePath)) {
+        $profileImage = $filePath;
+        break; // Exit the loop once we find a valid image
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -133,14 +146,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         }
 
         .profile-pic img {
-            width: 100%;
-            height: 100%;
+            width: 100px;
+            height: 100px;
             object-fit:cover;
             border-radius: 50%;
         }
 
         /* textas po profiliu */
-                /* Style for the main button to open the pop-up */
+        /* Style for the main button to open the pop-up */
         .change-profile-button {
             color: #ffffff;
             cursor: pointer;
@@ -229,10 +242,25 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             cursor: pointer;
             margin-bottom: 20px;
             background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Image preview */
+        .drag-drop-area img {
+            display: none;  /* Hidden by default */
+            width: 100%;    /* Fixed width of 100% to fit container */
+            height: 100%;   /* Fixed height of 100% to fit container */
+            object-fit: contain;  /* Ensures the image fits inside the container */
+        }
+
+        /* When image is visible */
+        .drag-drop-area.img-visible img {
+            display: block;  /* Make image visible */
         }
 
         /* Select from Files button */
-        .file-select-btn {
+        .confirm-btn {
             background-color: #1f8cf8;
             color: white;
             border: none;
@@ -246,7 +274,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             display: inline-block;
         }
 
-        .file-select-btn:hover {
+        .confirm-btn:hover {
             background-color: #1557bf;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
@@ -338,6 +366,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <body>
     <!-- Navbaras -->
     <div class="navbar">
+        <!-- Hidden input to store user ID -->
+        <input type="hidden" id="userId" value="<?php echo $_SESSION['user_id']; ?>">
         <div class="navbar-left">
             <a href="home.php">
                 <img src="logo.png" alt="Logo">
@@ -357,36 +387,49 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </button>
             </a>
-            <div class="navbar-profile"></div> <!-- Profilio nuotrauka -->
+            <div class="navbar-profile">
+            <img src="<?php echo htmlspecialchars($profileImage); ?>">
+            </div>
         </div>
     </div>
 
     <!-- Main -->
     <div class="container" style="margin-top: 60px;">
+        
+        <!-- Hidden input to store user ID -->
+        <input type="hidden" id="userId" value="<?php echo $_SESSION['user_id']; ?>">
+
         <!-- Profile Picture -->
         <div class="profile-pic">
-            <img src="profile pictures\test.jpg"/>
+            <img src="<?php echo htmlspecialchars($profileImage); ?>" alt="Profile Picture">
         </div>
+
         <div>
             <button class="change-profile-button" onclick="document.getElementById('myForm').classList.add('visible')">Change profile picture</button>
         </div>
-        
+
         <div class="form-popup" id="myForm">
             <div class="form-container">
                 <!-- Close button -->
                 <button class="close-btn" onclick="document.getElementById('myForm').classList.remove('visible')">X</button>
 
                 <!-- Drag-and-drop area -->
-                <label class="drag-drop-area">
-                    Drag & Drop an image
-                    <input type="file" accept="image/*" hidden>
-                </label>
+                <div class="drag-drop-area">
+                    <!-- Image preview (initially hidden) -->
+                    <img class="drag-drop-area-img" src="profile pictures/test.jpg" alt="Image Preview">
+                    <!-- The image file input -->
+                    <input type="file" accept="image/*" hidden onchange="handleFileChange(event)">
+                    Drag & Drop an image here
+                </div>
 
-                <!-- Select from Files button -->
-                <label class="file-select-btn">
-                    Select from Files
-                    <input type="file" accept="image/*" hidden>
-                </label>
+                <!-- Confirm button to trigger JavaScript logic -->
+                <button class="confirm-btn" onclick="document.getElementById('myForm').classList.remove('visible')">
+                    Confirm
+                </button>
+
+                <button class="confirm-btn" onclick="resetForm()">
+                    Reset
+                </button>
             </div>
         </div>
 
@@ -472,5 +515,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         <button class="back-btn" onclick="location.href='home.php'">Back to Main</button>
     </div>
     <script src="settings.js"></script>
+    <script src="getProfileImage.js"></script>
 </body>
 </html>
