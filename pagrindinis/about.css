@@ -3,10 +3,12 @@
             color: #ffffff;
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
             margin: 0;
+            padding-top: 60px;
         }
 
         .navbar {
@@ -95,8 +97,8 @@
             box-shadow: 1px 4px 18px rgba(255, 255, 255, 0.25);
             border-radius: 30px;
             overflow: hidden;
-            position:relative;
-           	display:block;
+            position: relative;
+           	display: block;
    			justify-content: flex-end;
             justify-content: space-between; 
             padding: 0 10px;
@@ -104,26 +106,26 @@
         }
     .image-gallery img {
             width: 90%;
-            height: 60%;
+            height: auto;
             border-radius: 20px;
             object-fit: contain;
             cursor: pointer;
             transition: transform 0.3s ease;
             margin-top: 20px; 
         }
-    .image-gallery img:hover {
+    .image-gallery img: hover {
             transform: scale(1.1);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         }
 
     .name {
             color:#ffffff;
-            text-align:center;
+            text-align: center;
             vertical-align:text-middle;
             font-size:16px;
             line-height:10px;
-            border-style:hidden;
-            outline:none;
+            border-style: hidden;
+            outline: none;
             width:100%;
             margin-top: 10px;
             line-height: 1.5;         
