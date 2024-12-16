@@ -59,3 +59,4 @@ if (move_uploaded_file($file['tmp_name'], $targetPath)) {
         'message' => 'Failed to upload the image.',
     ]);
 }
+?>
