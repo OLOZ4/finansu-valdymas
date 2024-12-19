@@ -20,6 +20,33 @@ foreach ($imageExtensions as $ext) {
         break; // Exit the loop once we find a valid image
     }
 }
+// Retrieve transactions from the database
+require_once("config.php");
+$user_id = $_SESSION['user_id'];
+$transactions = [];
+
+// Retrieve the latest 5 income transactions
+$stmt = $conn->prepare("SELECT amount, description, 'Income' AS type FROM income WHERE user_id = ? AND amount != 0 ORDER BY id DESC LIMIT 3");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
+    $transactions[] = $row;
+}
+
+// Retrieve the latest 5 expense transactions
+$stmt = $conn->prepare("SELECT amount, description, category AS type FROM expenses WHERE user_id = ? ORDER BY id DESC LIMIT 3");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
+    $transactions[] = $row;
+}
+
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +129,11 @@ foreach ($imageExtensions as $ext) {
                 <div class="box-transactions">
                     <h2>Last Transactions</h2>
                     <ul id="transactionList">
+                    <?php foreach ($transactions as $transaction): ?>
+                        <li>
+                                €<?php echo number_format($transaction['amount'], 2); ?> - <?php echo htmlspecialchars($transaction['description']); ?> (<?php echo htmlspecialchars($transaction['type']); ?>)
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <div class="box-goals">
