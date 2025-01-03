@@ -194,6 +194,6 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
     <script src="home.js"></script>
-    <script src="getProfileImage.js"</script>
+    <script src="getProfileImage.js"></script>
 </body>
 </html>
