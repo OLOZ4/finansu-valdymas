@@ -116,8 +116,14 @@ $conn->close();
 
             <!-- 3 pagr. mygtukai -->
             <div class="actions buttons-between">
-                <button class="action-btn" id="addIncomeBtn"><i class="fa fa-plus-circle"></i> Add Income</button>
-                <button class="action-btn" id="addExpenseBtn"><i class="fa fa-minus-circle"></i> Add Expense</button>
+                <button class="action-btn" id="addIncomeBtn">
+                    <i class="fa fa-plus-circle"></i>
+                    <h4>Add Income</h4>
+                    </button>
+                <button class="action-btn" id="addExpenseBtn">
+                    <i class="fa fa-minus-circle"></i> 
+                <h4>Add Expense</h4>
+                </button>
             </div>
 
             <!-- pagrindines sekcijos, kur grafikas ir kiti -->
