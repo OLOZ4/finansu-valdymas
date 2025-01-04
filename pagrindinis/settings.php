@@ -18,6 +18,13 @@ foreach ($imageExtensions as $ext) {
         break; // Exit the loop once we find a valid image
     }
 }
+if (isset($_SESSION['toast_message']) && isset($_SESSION['toast_type'])) {
+    $toast_message = $_SESSION['toast_message'];
+    $toast_type = $_SESSION['toast_type'];
+
+    unset($_SESSION['toast_message']);
+    unset($_SESSION['toast_type']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -516,5 +523,18 @@ foreach ($imageExtensions as $ext) {
     </div>
     <script src="settings.js"></script>
     <script src="getProfileImage.js"></script>
+
+    <?php if (isset($toast_message) && isset($toast_type)): ?>
+        <div class="toast <?php echo htmlspecialchars($toast_type); ?>" id="toast">
+            <?php echo htmlspecialchars($toast_message); ?>
+        </div>
+        <script>
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        </script>
+    <?php endif; ?>
 </body>
 </html>
