@@ -3,6 +3,25 @@ const dragDropAreaImg = document.querySelector('.drag-drop-area-img'); // Refere
 const fileInput = document.querySelector('.drag-drop-area input[type="file"]');
 const userId = document.getElementById('userId').value; // Assuming there's a hidden field for userId
 
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3000);
+}
+
 // Drag-and-drop handlers
 dragDropArea.addEventListener('dragover', (event) => {
     event.preventDefault();
@@ -21,7 +40,7 @@ dragDropArea.addEventListener('drop', (event) => {
     if (file && file.type.startsWith('image/')) {
         displayImage(file);
     } else {
-        alert('Please drop a valid image file.');
+        showToast('Please drop a valid image file.', 'error');
     }
 });
 
@@ -31,7 +50,7 @@ function handleFileChange(event) {
     if (file && file.type.startsWith('image/')) {
         displayImage(file);
     } else {
-        alert('Please select a valid image file.');
+        showToast('Please select a valid image file.', 'error');
     }
 }
 
@@ -69,13 +88,14 @@ function uploadImage(file, userId) {
 
                 // Also update the drag-drop area image (as you already did)
                 dragDropAreaImg.src = `profile pictures/${userId}.${data.extension}?t=${Date.now()}`;
+                 showToast('Image uploaded successfully.', 'success');
             } else {
-                alert(data.message); // Show error if image upload failed
+                alert(data.message, 'error'); // Show error if image upload failed
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('An error occurred while uploading the image.');
+            showToast('An error occurred while uploading the image.', 'error');
         });
 }
 
@@ -102,13 +122,13 @@ function resetForm() {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                alert('Profile picture reset successfully.');
+               showToast('An error occurred while uploading the image.', 'error');
             } else {
-                alert(data.message);
+                showToast(data.message, 'error');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('An error occurred while resetting the profile picture.');
+             showToast('An error occurred while uploading the image.', 'error');
         });
 }
