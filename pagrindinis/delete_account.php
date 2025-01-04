@@ -30,22 +30,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn->commit();
 
             session_destroy();
-            echo "Account deleted successfully!";
-            echo '<script>
-                    setTimeout(function() {
-                        window.location.href = "index.php";
-                    }, 2000);
-                  </script>';
+            session_start();
+            $_SESSION['toast_message'] = "Account deleted successfully.";
+            $_SESSION['toast_type'] = "success";
+            
+            header("Location: index.php");
+            exit();
         } catch (mysqli_sql_exception $exception) {
             // Rollback the transaction if an error occurs
             $conn->rollback();
-            throw $exception;
+            $_SESSION['toast_message'] = "Error deleting account: " . $e->getMessage();
+            $_SESSION['toast_type'] = "error";
+
+            header("Location: settings.php");
+            exit();
         }
 
-        $stmt->close();
-        $conn->close();
     } else {
-        echo "Confirmation text does not match.";
+        $_SESSION['toast_message'] = "Confirmation text does not match.";
+        $_SESSION['toast_type'] = "error";
+
+        // Redirect back to settings.php
+        header("Location: settings.php");
+        exit();
     }
 }
-?>
