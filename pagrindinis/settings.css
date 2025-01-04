@@ -72,3 +72,31 @@ body {
 .submit-btn:hover {
     background-color: #1557bf;
 }
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 370px;
+    background-color: #1f8cf8;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.error {
+    background-color: #ff5c5c;
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
