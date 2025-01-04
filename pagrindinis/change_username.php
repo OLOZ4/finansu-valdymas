@@ -11,17 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         $_SESSION['username'] = $new_username;
-        echo "Username updated successfully!";
-        echo '<script>
-                setTimeout(function() {
-                    window.location.href = "settings.php";
-                }, 2000);
-              </script>';
+        $_SESSION['toast_message'] = "Username updated successfully!";
+        $_SESSION['toast_type'] = "success"; // 'success' or 'error'
     } else {
-        echo "Error updating username: " . $conn->error;
+        $_SESSION['toast_message'] = "Error updating username: " . $conn->error;
+        $_SESSION['toast_type'] = "error"; // 'success' or 'error'
     }
 
     $stmt->close();
     $conn->close();
+
+    header("Location: settings.php");
+    exit();
 }
 ?>
