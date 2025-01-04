@@ -10,17 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("si", $new_email, $user_id);
 
     if ($stmt->execute()) {
-        echo "Email updated successfully!";
-        echo '<script>
-                setTimeout(function() {
-                    window.location.href = "settings.php";
-                }, 2000);
-              </script>';
+        $_SESSION['toast_message'] = "Email updated successfully!";
+        $_SESSION['toast_type'] = "success"; 
     } else {
-        echo "Error updating email: " . $conn->error;
+        $_SESSION['toast_message'] = "Error updating email: " . $conn->error;
+        $_SESSION['toast_type'] = "error"; 
     }
 
     $stmt->close();
     $conn->close();
+    header("Location: settings.php");
+    exit();
 }
 ?>
