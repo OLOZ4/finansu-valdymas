@@ -161,7 +161,7 @@ $conn->close();
             <span class="modal-close" id="closeModal">&times;</span>
             <h3>Add Expense</h3>
             <label for="expenseAmount">Amount:</label>
-            <input type="number" id="expenseAmount" placeholder="Enter amount" />
+            <input type="number" min="0" id="expenseAmount" placeholder="Enter amount" />
             <label for="expenseDesc">What did you buy?</label>
             <input type="text" id="expenseDesc" placeholder="Description" />
             
@@ -184,7 +184,7 @@ $conn->close();
         <span class="modal-close" id="closeIncomeModal">&times;</span>
         <h3>Add Income</h3>
         <label for="incomeAmount">Amount:</label>
-        <input type="number" id="incomeAmount" placeholder="Enter amount" />
+        <input type="number" min="0" id="incomeAmount" placeholder="Enter amount" />
         <label for="incomeDesc">Description:</label>
         <input type="text" id="incomeDesc" placeholder="Income description" />
         <button onclick="submitIncome()">Submit</button>

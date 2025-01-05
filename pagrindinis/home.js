@@ -72,8 +72,9 @@ document.getElementById('closeModal').addEventListener('click', function() {
 function submitIncome() {
     const amount = parseFloat(document.getElementById('incomeAmount').value);
     const description = document.getElementById('incomeDesc').value;
+
     console.log(amount); // for testing
-    if (!isNaN(amount) && description.trim() !== "") {
+    if (!isNaN(amount) && description.trim() !== "" && amount > 0) {
 
         //***************************************** */ BACKEND
         try {
@@ -121,7 +122,7 @@ function submitExpense() {
     const category = document.getElementById('expenseCategory').value; // leidzia pasirinkti expense type
     
     console.log(category); // for testing
-    if (!isNaN(amount) && description.trim() !== "") {
+    if (!isNaN(amount) && description.trim() !== "" && amount > 0) {
 
         //***************************************** */ BACKEND
         try {
