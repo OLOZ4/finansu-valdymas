@@ -5,6 +5,18 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: /index.php');
     exit;
 }
+
+$profileImage = 'profile pictures/test.jpg'; // Default image
+
+// Possible image extensions
+$imageExtensions = ['jpg', 'png', 'gif'];
+foreach ($imageExtensions as $ext) {
+    $filePath = "profile pictures/{$_SESSION['user_id']}.$ext";
+    if (file_exists($filePath)) {
+        $profileImage = $filePath;
+        break; // Exit the loop once we find a valid image
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +31,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 </head>
 <body>
     <div class="navbar">
+        <input type="hidden" id="userId" value="<?php echo $_SESSION['user_id']; ?>">
         <div class="navbar-left">
             <a href="home.php">
             <img src="logo.png" alt="Logo">    
@@ -36,7 +49,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                 <i class="fa-solid fa-right-from-bracket"></i>
             </button>
             </a>
-            <div class="navbar-profile"></div>
+            <div class="navbar-profile">
+            <img src="<?php echo htmlspecialchars($profileImage); ?>"alt="Profile Picture" class="profile-img">
+            </div>
         </div>
     </div>
       <!--The 6 -->
@@ -68,5 +83,6 @@ BACKEND DEVELOPER</p>
             <p class="name">GABIJA<br>FRONTEND DEVELOPER</p>
         </div>
     </div>
+    <script src="getProfileImage.js"></script>
 </body>
 </html>

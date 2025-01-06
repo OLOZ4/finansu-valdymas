@@ -80,6 +80,14 @@
             border-radius: 50%;
             background-color: #ffffff;
         }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            object-fit: cover;
+        }
+
         .image-gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
