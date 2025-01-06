@@ -266,6 +266,10 @@ if (isset($_SESSION['toast_message']) && isset($_SESSION['toast_type'])) {
             display: block;  /* Make image visible */
         }
 
+        .drag-drop-area.img-visible::before {
+        content: none;  /* Hides the text */
+        }
+
         /* Select from Files button */
         .confirm-btn {
             background-color: #1f8cf8;
