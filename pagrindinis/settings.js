@@ -88,7 +88,7 @@ function uploadImage(file, userId) {
 
                 // Also update the drag-drop area image (as you already did)
                 dragDropAreaImg.src = `profile pictures/${userId}.${data.extension}?t=${Date.now()}`;
-                 showToast('Image uploaded successfully.', 'success');
+                 showToast('Image uploaded successfully. Please refresh the page', 'success');
             } else {
                 alert(data.message, 'error'); // Show error if image upload failed
             }
