@@ -28,7 +28,7 @@ Our team consists of 6 open-minded passionate and friendly first-year Vilnius Un
 + [**Benediktas**](https://github.com/OLOZ4): Team Lead, backend
 + [**Marijus**](https://github.com/supermario9000): Backend, documentation
 + [**Tauras**](https://github.com/Taurelis1): Backend
-+ [**Dmitrij**: Hosting, testing
++ [**Dmitrij**](https://github.com/dmitrijpikta): Hosting, testing
 + [**Gabija**](https://github.com/Draokon): Frontend, design
 + [**Ervinas**](https://github.com/frogg-kek): Frontend, design
 
