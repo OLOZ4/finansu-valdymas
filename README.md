@@ -25,12 +25,12 @@ Finansų Valdymas is built using PHP, CSS, JavaScript, HTML, and Docker. It aims
 
 Our team consists of 6 open-minded passionate and friendly first-year Vilnius University information system engineering students:
 
-+ **Benediktas**: Team Lead, backend
-+ **Marijus**: Backend, documentation
-+ **Tauras**: Backend
-+ **Dmitrij**: Hosting, testing
-+ **Gabija**: Frontend, design
-+ **Ervinas**: Frontend, design
++ [**Benediktas**](https://github.com/OLOZ4): Team Lead, backend
++ [**Marijus**](https://github.com/supermario9000): Backend, documentation
++ [**Tauras**](https://github.com/Taurelis1): Backend
++ [**Dmitrij**: Hosting, testing
++ [**Gabija**](https://github.com/Draokon): Frontend, design
++ [**Ervinas**](https://github.com/frogg-kek): Frontend, design
 
 
 ## Features
